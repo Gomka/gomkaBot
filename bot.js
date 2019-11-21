@@ -19,7 +19,7 @@ client.on('message', message => {
 
     }
 
-    if (message == true) {
+    if (message.acknowledge == true) {
 
         message.reply('Me pica la cabeza por dentro.');
 
