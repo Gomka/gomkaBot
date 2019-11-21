@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-
  
 
 client.on('ready', () => {
@@ -18,7 +17,13 @@ client.on('message', message => {
 
        message.reply('pong');
 
-       }
+    }
+
+    if (message == true) {
+
+        message.reply('Me pica la cabeza por dentro.');
+
+    }
 
 });
 
