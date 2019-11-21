@@ -19,9 +19,9 @@ client.on('message', message => {
 
     }
 
-    if (message.acknowledge == true) {
+    if (message.acknowledge || message.content === 'test') {
 
-        message.reply('Me pica la cabeza por dentro.');
+        message.reply('A <@' + message.author.id +'> le pica la cabeza por dentro.');
 
     }
 
