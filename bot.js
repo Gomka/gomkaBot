@@ -19,7 +19,7 @@ client.on('message', message => {
 
     }
 
-    if (message.acknowledge || message.content === 'test') {
+    if (message.content === 'test') {
 
         message.reply('A <@' + message.author.id +'> le pica la cabeza por dentro.');
 
