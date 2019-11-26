@@ -25,6 +25,10 @@ client.on('message', message => {
 
     }
 
+    if (message.content.includes("siempre") && message.author != this ){
+        message.reply("S I E M P R E");
+    }
+
 });
 
  
