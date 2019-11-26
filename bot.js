@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 
-const client = new Discord.Client();
+const bot = new Discord.Client();
  
 
-client.on('ready', () => {
+bot.on('ready', () => {
 
     console.log('I am ready!');
 
@@ -11,7 +11,9 @@ client.on('ready', () => {
 
  
 
-client.on('message', message => {
+bot.on('message', message => {
+
+    var input = message.content.toLowerCase();
 
     if (message.content === 'ping') {
 
@@ -25,13 +27,13 @@ client.on('message', message => {
 
     }
 
-    if (message.content.toLowerCase.includes("siempre") && message.author != this){
+    if (input.includes("siempre") && message.author != this){
         message.reply("S I E M P R E");
     }
 
-});
+}); 
 
- 
+
 
 // THIS  MUST  BE  THIS  WAY
 
