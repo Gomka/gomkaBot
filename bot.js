@@ -27,7 +27,7 @@ bot.on('message', message => {
 
     }
 
-    if (input.includes("siempre") && message.author != this){
+    if (input.inexOf("siempre") && !message.author.bot){
         message.reply("S I E M P R E");
     }
 
