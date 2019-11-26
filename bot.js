@@ -27,8 +27,18 @@ bot.on('message', message => {
 
     }
 
-    if (input.includes("siempre") && !message.author.bot){
+    if (input.includes("siempre")) { //&& !message.author.bot
+
         message.channel.send("S I E M P R E")
+
+    }
+
+    if (input.includes("dubs")) {
+
+        var dubs = Math.floor(Math.random * 1000000000);
+
+        message.channel.send(dubs);
+        
     }
 
 }); 
