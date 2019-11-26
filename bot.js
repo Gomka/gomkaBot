@@ -38,6 +38,8 @@ bot.on('message', message => {
         var dubs = Math.random * 1000000000;
 
         message.channel.send(dubs);
+        message.channel.send(100);
+        message.channel.send(dubs.toString);
         
     }
 
