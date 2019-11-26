@@ -17,7 +17,7 @@ bot.on('message', message => {
 
     if (message.content === 'ping') {
 
-       message.reply('pong');
+       message.channel.send("pong")
 
     }
 
@@ -28,7 +28,7 @@ bot.on('message', message => {
     }
 
     if (input.includes("siempre") && !message.author.bot){
-        message.reply("S I E M P R E");
+        message.channel.send("S I E M P R E")
     }
 
 }); 
