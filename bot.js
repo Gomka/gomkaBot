@@ -35,10 +35,9 @@ bot.on('message', message => {
 
     if (input.includes("dubs")) {
 
-        var dubs = Math.random * 1000000000;
+        var dubs = Math.random() * 1000000000;
 
         message.channel.send(dubs);
-        message.channel.send(dubs.toString());
         
     }
 
