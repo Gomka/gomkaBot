@@ -22,8 +22,8 @@ bot.on('message', message => {
     }
 
     if (message.content === 'test') {
-
-        message.reply('A <@' + message.author.id +'> le pica la cabeza por dentro.');
+        
+        message.channel.send('A <@' + message.author.id +'> le pica la cabeza por dentro.');
 
     }
 
