@@ -32,7 +32,7 @@ bot.on('message', message => {
 
     if (input === "dubs") {
 
-        var dubs = new String(Math.floor(Math.random() * 1000000000).toString());
+        var dubs = (Math.floor(Math.random() * 1000000000)).toString();
         var tot = 0;
         
         for (var i = dubs.length; i > 0; i--) {
