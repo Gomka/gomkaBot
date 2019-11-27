@@ -36,14 +36,7 @@ bot.on('message', message => {
 
         var tot = 0;
 
-        var test = "";
-
-        for (var i = dubs.length-1; i > 0; i--) {
-            
-            if(dubs.charAt(i) == dubs.charAt(i+1)) tot++;
-            test += dubs.charAt(i+1);
-            
-        }
+        tot = recursiveDubs(dubs, i = dubs.length());
 
         switch (tot) {
             case 1: message.reply(dubs + " check them dubs");                
@@ -69,6 +62,14 @@ bot.on('message', message => {
     }
 
 });
+
+function recursiveDubs(dubs, i) {
+    if(i>0 && (dubs.charAt(i) == dubs.charAt(i-1))) {
+        return 1+ recursiveDubs (dubs, i--);
+    } else {
+        return 0;
+    }
+};
 
 // THIS  MUST  BE  THIS  WAY
 
