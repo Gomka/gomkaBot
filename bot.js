@@ -57,7 +57,7 @@ bot.on('message', message => {
                 break;
             case 8: message.reply(dubs + " go buy some lotto");                
                 break;
-            default: message.channel.send(dubs + " " + test);
+            default: message.channel.send(dubs);
                 break;
         }
 
@@ -66,9 +66,8 @@ bot.on('message', message => {
 });
 
 function recursiveDubs(dubs, i) {
-    if(i>0 && (dubs.charAt(i) == dubs.charAt(i-1))) {
-        i -= 1;
-        return 1+ recursiveDubs (dubs, i);
+    if(i > 0 && (dubs.charAt(i) == dubs.charAt(i-1))) {
+        return 1 + recursiveDubs(dubs, i-1);
     } else {
         return 0;
     }
