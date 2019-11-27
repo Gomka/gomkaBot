@@ -36,26 +36,32 @@ bot.on('message', message => {
 
         var tot = 0;
 
-        var i = 0;
+        for (let i = dubs.length(); i > 0; i--) {
 
-        tot = recursiveDubs(dubs, i = dubs.length());
+            if (dubs.charAt(i) == dubs.charAt(i - 1)) {
+                tot++;
+            } else {
+                break;
+            }
+
+        }
 
         switch (tot) {
-            case 1: message.reply(dubs + " check them dubs");                
+            case 1: message.reply(dubs + " check them dubs");
                 break;
-            case 2: message.reply(dubs + " bruh trips checked");                
+            case 2: message.reply(dubs + " bruh trips checked");
                 break;
-            case 3: message.reply(dubs + " el diablo that be some quads");                
+            case 3: message.reply(dubs + " el diablo that be some quads");
                 break;
-            case 4: message.reply(dubs + " the fuck man you hackin' that be quints");                
+            case 4: message.reply(dubs + " the fuck man you hackin' that be quints");
                 break
-            case 5: message.reply(dubs + " six in a row, you'r'e mams a hoe");                
+            case 5: message.reply(dubs + " six in a row, you'r'e mams a hoe");
                 break;
-            case 6: message.reply(dubs + " seven eleven this string is probably never getting printed");                
+            case 6: message.reply(dubs + " seven eleven this string is probably never getting printed");
                 break;
-            case 7: message.reply(dubs + " eight in a row. Congratulations you hacked my bot or something");                
+            case 7: message.reply(dubs + " eight in a row. Congratulations you hacked my bot or something");
                 break;
-            case 8: message.reply(dubs + " go buy some lotto");                
+            case 8: message.reply(dubs + " go buy some lotto");
                 break;
             default: message.channel.send(dubs);
                 break;
@@ -64,14 +70,6 @@ bot.on('message', message => {
     }
 
 });
-
-function recursiveDubs(dubs, i) {
-    if(i > 0 && (dubs.charAt(i) == dubs.charAt(i-1))) {
-        return 1 + recursiveDubs(dubs, i-1);
-    } else {
-        return 0;
-    }
-};
 
 // THIS  MUST  BE  THIS  WAY
 
