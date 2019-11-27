@@ -30,7 +30,6 @@ bot.on('message', message => {
 
     }
 
-<<<<<<< HEAD
     if (input === "dubs") {
 
         var dubs = Math.floor(Math.random() * 1000000000).toString();
@@ -66,11 +65,6 @@ bot.on('message', message => {
             default: message.channel.send(dubs + " " + test);
                 break;
         }
-=======
-    if (input.includes("dubs")) {
-
-        var dubs = Math.random() * 1000000000;
->>>>>>> parent of 61f0c49... rounding
 
     }
 
