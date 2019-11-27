@@ -34,19 +34,18 @@ bot.on('message', message => {
 
         var dubs = (Math.floor(Math.random() * 1000000000)).toString();
         var tot = 0;
-        
-        for (var i = dubs.length; i > 0; i--) {
-            {
-                if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(dubs.charAt(i)) == (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(dubs.charAt(i - 1))) {
-                    tot++;
-                }
-                else {
-                    break;
-                }
-            }
-            ;
-        }
 
+        for (var i = dubs.length; i > 0; i--) {
+
+            if ((function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(dubs.charAt(i)) == (function (c) { return c.charCodeAt == null ? c : c.charCodeAt(0); })(dubs.charAt(i - 1))) {
+                tot++;
+            }
+            else {
+                break;
+            }
+
+
+        }
 
         switch (tot) {
             case 1: message.reply(dubs + " check them dubs");
