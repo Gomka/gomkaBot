@@ -36,7 +36,7 @@ bot.on('message', message => {
 
         var tot = 0;
 
-        for (let i = dubs.length(); i > 0; i--) {
+        for (let i = dubs.length; i > 0; i--) {
 
             if (dubs.charAt(i) == dubs.charAt(i - 1)) {
                 tot++;
