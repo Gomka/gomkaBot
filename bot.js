@@ -36,6 +36,8 @@ bot.on('message', message => {
 
         var tot = 0;
 
+        var i = 0;
+
         tot = recursiveDubs(dubs, i = dubs.length());
 
         switch (tot) {
@@ -65,7 +67,8 @@ bot.on('message', message => {
 
 function recursiveDubs(dubs, i) {
     if(i>0 && (dubs.charAt(i) == dubs.charAt(i-1))) {
-        return 1+ recursiveDubs (dubs, i--);
+        i -= 1;
+        return 1+ recursiveDubs (dubs, i);
     } else {
         return 0;
     }
