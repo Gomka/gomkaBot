@@ -30,7 +30,7 @@ bot.on('message', message => {
 
     }
 
-    if (input === "dubs") {
+    if (message.content.startsWith("dubs")) {
 
         var dubs = (Math.floor(Math.random() * 1000000000)).toString();
         var tot = 0;
