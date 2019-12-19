@@ -30,9 +30,9 @@ bot.on('message', message => {
 
     }
 
-    if (message.content.startsWith("roll")) {
+    if (input.startsWith("roll")) {
 
-        var dubs = (Math.floor(Math.random() * 1000000000)).toString();
+        var dubs = message.id;
         var tot = 0;
 
         for (var i = dubs.length-1; i > 0; i--) {
