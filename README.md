@@ -3,7 +3,7 @@ Gomka's discord bot
 
 Intended to do wonky shit, but for now it's in progress.
 
-##Commands:
+## Commands:
 
 `roll` To roll dubs based on your message's ID. 
 	If two or more digits starting from lower to higher are equal the bot will announce it
