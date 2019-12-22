@@ -11,3 +11,5 @@ Intended to do wonky shit, but for now it's in progress.
 `ping` The bot will pong.
 
 `test` The bot will announce that your head itches from inside.
+
+if a message contains the word `siempre` the bot will say S I E M P R E

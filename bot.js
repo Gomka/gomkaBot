@@ -59,7 +59,7 @@ bot.on('message', message => {
                 break;
             case 6: message.reply(dubs + " seven eleven this string is probably never getting printed");
                 break;
-            case 7: message.reply(dubs + " eight in a row. Congratulations you hacked my bot or something");
+            case 7: message.reply(dubs + " eight in a row. Loko ke marrrdito ratatwuá");
                 break;
             case 8: message.reply(dubs + " go buy some lotto");
                 break;
