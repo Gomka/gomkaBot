@@ -6,11 +6,16 @@ bot.on('ready', () => {
 
     console.log('I am ready!');
 
+    client.user.setActivity('Exceso de ${client.guilds.size} cromosomas');
+
+    var robaladaList;
+
 });
 
 bot.on('message', message => {
 
-    var input = message.content.toLowerCase();
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const prefix = args[0].toLowerCase();
 
     if (message.content === 'ping') {
 
@@ -24,13 +29,13 @@ bot.on('message', message => {
 
     }
 
-    if (input.includes("siempre")) { //&& !message.author.bot
+    if (message.toLowerCase.includes("siempre")) {
 
         message.channel.send("S I E M P R E")
 
     }
 
-    if (input.startsWith("roll")) {
+    if (prefix === "roll") {
 
         var dubs = message.id;
         var tot = 0;
@@ -61,10 +66,31 @@ bot.on('message', message => {
                 break;
             case 7: message.reply(dubs + " eight in a row. Loko ke marrrdito ratatwuá");
                 break;
-            case 8: message.reply(dubs + " go buy some lotto");
+            case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17: 
+            case 18: message.reply(dubs + " go buy some lotto");
                 break;
             default: message.channel.send(dubs);
                 break;
+        }
+
+    }
+
+    if(prefix === "robalada" && !message.author.bot) {
+
+        if(args[1] === "add") {
+
+            var string = "";
+
+            args.forEach(element => {
+                string +=(element+" ");
+            });
+
+            robaladaList.push(string);
+
+            message.channel.send("`Robalada satisfactoriamente sintetizada.`");
+
+        } else {
+            message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))])
         }
 
     }
