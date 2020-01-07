@@ -4,9 +4,9 @@ const bot = new Discord.Client();
 
 bot.on('ready', () => {
 
-    console.log('I am ready!');
+    console.log('c biene');
 
-    client.user.setActivity('Exceso de ${client.guilds.size} cromosomas');
+    client.user.setActivity('Exceso de ${bot.guilds.size} cromosomas');
 
     var robaladaList;
 
