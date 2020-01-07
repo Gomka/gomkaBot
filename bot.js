@@ -90,7 +90,8 @@ bot.on('message', message => {
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
         } else {
-            message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))])
+            if(robaladaList.length>0)
+                message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))])
         }
 
     }
