@@ -14,8 +14,7 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-    var args = message.content.trim().split(/ +/g);
-    var prefix = args[0].toLowerCase();
+    var messageLower = message.content.toLowerCase();
 
     if (message.content === 'ping') {
 
@@ -29,13 +28,13 @@ bot.on('message', message => {
 
     }
 
-    if (message.toLowerCase.includes("siempre")) {
+    if (messageLower.includes("siempre")) {
 
         message.channel.send("S I E M P R E")
 
     }
 
-    if (prefix === "roll") {
+    if (messageLower.startsWith("roll")) {
 
         var dubs = message.id;
         var tot = 0;
@@ -75,9 +74,9 @@ bot.on('message', message => {
 
     }
 
-    if(prefix === "robalada" && !message.author.bot) {
+    if(messageLower.startsWith("robalada") && !message.author.bot) {
 
-        if(args[1] === "add") {
+        if(messageLower.startsWith("robalada add")) {
 
             var string = "";
 
