@@ -14,7 +14,7 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const args = message.content.trim().split(/ +/g);
     const prefix = args[0].toLowerCase();
 
     if (message.content === 'ping') {
