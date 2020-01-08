@@ -84,7 +84,7 @@ bot.on('message', async message => {
 
         } else{
             if(robaladaList.robaladas.length>0) {
-                message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * Math.floor(robaladaList.length-1))]);
+                message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * Math.floor(robaladaList.robaladas.length-1))]);
             } else {
                 message.channel.send("No robaladas to deliver (yet)");
             }
