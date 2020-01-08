@@ -11,7 +11,7 @@ bot.on('ready', () => {
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
     bot.user.setPresence({
         game: {
-            name: 'you cum',
+            name: 'With ${bot.guilds.size} rectal glands',
             type: "Watching",
             url: "https://www.reddit.com/r/gazing/"
         }
