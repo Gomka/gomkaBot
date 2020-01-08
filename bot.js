@@ -8,11 +8,13 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
+    var size = bot.guilds.size
+
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
     bot.user.setPresence({
         game: {
-            name: 'With ${bot.guilds.size} rectal glands',
-            type: "Watching",
+            name: '${size} rectal genocides',
+            type: "WATCHING",
             url: "https://www.reddit.com/r/gazing/"
         }
     });
@@ -34,7 +36,7 @@ bot.on('message', async message => {
 
     var messageLower = message.content.toLowerCase();
     
-    const messageStrings = message.content.trim().split(/ +/g);
+    const messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
     const messageStringsLower = messageLower.trim().split(/ +/g);
     const command = messageStringsLower[0];
 
@@ -106,6 +108,6 @@ bot.on('message', async message => {
 
 });
 
-// THIS  MUST  BE  THIS  WAY
+// Heroku integration
 
 bot.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
