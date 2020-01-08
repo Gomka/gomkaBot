@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-const robaladaList = require("./robalada.txt");
+var robaladaList = require("./robalada.txt");
 
 bot.on('ready', () => {
 
@@ -85,7 +85,7 @@ bot.on('message', async message => {
             if(robaladaList.length>0) {
                 message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))]);
             } else {
-                message.channel.send("No robaladas to deliver");
+                message.channel.send("No robaladas to deliver (yet)");
             }
         }
 
