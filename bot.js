@@ -8,7 +8,7 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    bot.user.setPresence({ game: { name: 'Con '+bot.guilds.size+'bolas chinas' }, status: 'online' })
+    bot.user.setPresence({ game: { name: 'Con '+bot.guilds.size+' bolas chinas' }, status: 'online' })
 });
 
 bot.on("guildCreate", guild => {
