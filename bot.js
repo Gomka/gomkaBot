@@ -21,7 +21,7 @@ bot.on("guildDelete", guild => {
     // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
-bot.on('message', message => {
+bot.on('message', async message => {
 
     if(message.author.bot && config.ignoreBots) return;
 
