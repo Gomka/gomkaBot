@@ -65,17 +65,9 @@ bot.on('message', async message => {
 
         if(messageLower.startsWith("robalada add ")) {
 
-            var string = "\*\"";
+            var robaladaStr = message.content.replace("robalada add ", "");
 
-            messageStrings.shift().shift(); // quitamos "robalada add "
-
-            messageStrings.forEach(element => {
-                string +=(element+" ");
-            });
-
-            string += "\"\* -Robalito";
-
-            robaladaList.robaladas.push(string);
+            robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
