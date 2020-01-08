@@ -9,7 +9,7 @@ bot.on('ready', () => {
     console.log('c biene');
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
-    client.user.setPresence({
+    bot.user.setPresence({
         game: {
             name: 'you cum',
             type: "Watching",
