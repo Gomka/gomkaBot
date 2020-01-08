@@ -2,30 +2,56 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
+const config = require("./config.json");
+
 bot.on('ready', () => {
 
-    console.log('c biene');
+    // console.log('c biene');
 
-    client.user.setActivity('Exceso de ${bot.guilds.size} cromosomas');
+    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 
     var robaladaList;
 
 });
 
+bot.on("guildCreate", guild => {
+    // This event triggers when the bot joins a guild.
+    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+  });
+
+bot.on("guildDelete", guild => {
+    // this event triggers when the bot is removed from a guild.
+    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+  });
+
 bot.on('message', message => {
 
+    if(message.author.bot && config.ignoreBots) return;
+
     var messageLower = message.content.toLowerCase();
+    
+    const messageStrings = message.content.trim().split(/ +/g);
+    const messageStringsLower = messageLower.trim().split(/ +/g);
+    const command = messageStringsLower[0];
 
-    if (message.content === 'ping') {
-
-        message.channel.send("pong")
-
+    if(command === "ping") {
+        // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
+        // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
+        const m = await message.channel.send("Ping?");
+        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@' + message.author.id + '> le pica la cabeza por dentro.`);
     }
 
-    if (message.content === 'test') {
+    if (command === '¡ignorebot') {
+        if(messageStringsLower[1] === "true") {
 
-        message.channel.send('A <@' + message.author.id + '> le pica la cabeza por dentro.');
+            config.ignoreBots = true;
+            message.channel.send("Ignore bots set to `true`");
 
+        } else if(messageStringsLower[1] === "false"){
+
+            config.ignoreBots = false;
+            message.channel.send("Ignore bots set to `false`");
+        }
     }
 
     if (messageLower.includes("siempre")) {
@@ -34,7 +60,7 @@ bot.on('message', message => {
 
     }
 
-    if (messageLower.startsWith("roll")) {
+    if (command === "roll") {
 
         var dubs = message.id;
         var tot = 0;
@@ -74,9 +100,9 @@ bot.on('message', message => {
 
     }
 
-    if(messageLower.startsWith("robalada") && !message.author.bot) {
+    if(command === "robalada" && !message.author.bot) {
 
-        if(messageLower.startsWith("robalada add")) {
+        if(messageStringsLower[1]=== "add") {
 
             var string = "";
 
