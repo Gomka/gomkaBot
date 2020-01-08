@@ -9,6 +9,7 @@ bot.on('ready', () => {
     console.log('c biene');
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
+    bot.user.setPresence({ game: { name: 'test', type: 0}});
 });
 
 bot.on("guildCreate", guild => {
