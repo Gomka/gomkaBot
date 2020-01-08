@@ -9,9 +9,6 @@ bot.on('ready', () => {
     console.log('c biene');
 
     bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
-
-    var robaladaList;
-
 });
 
 bot.on("guildCreate", guild => {
@@ -96,27 +93,6 @@ bot.on('message', message => {
                 break;
             default: message.channel.send(dubs);
                 break;
-        }
-
-    }
-
-    if(command === "robalada" && !message.author.bot) {
-
-        if(messageStringsLower[1]=== "add") {
-
-            var string = "";
-
-            args.forEach(element => {
-                string +=(element+" ");
-            });
-
-            robaladaList.push(string);
-
-            message.channel.send("`Robalada satisfactoriamente sintetizada.`");
-
-        } else {
-            if(robaladaList.length>0)
-                message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))])
         }
 
     }
