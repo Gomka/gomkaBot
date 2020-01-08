@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-var robaladaList = require("./robalada.txt");
+var robaladaList = require("./robalada.json");
 
 bot.on('ready', () => {
 
@@ -63,27 +63,36 @@ bot.on('message', async message => {
 
     if(messageLower.includes("robalada") && !message.author.bot) {
 
-        if(messageStringsLower[0] === "robalada" && messageStringsLower[1] === "add") {
+        if(messageLower.startsWith("robalada add ")) {
 
-            var string = "";
+            var string = "*";
 
-            messageStrings = messageStrings.splice(0,2);
+            messageStrings = messageStrings.splice(0,2); // quitamos "robalada add "
 
             messageStrings.forEach(element => {
                 string +=(element+" ");
             });
 
-            robaladaList.push(string);
+            string += "* -Robalito";
+
+            robaladaList.robaladas.push(string);
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
         } else if(messageStrings[1] === "cleanse"){
             
-            robaladaList = null;
+            // robaladaList = null;
+            message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                 
-        } else {
-            if(robaladaList.length>0) {
-                message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))]);
+        } else if(messageStrings[1] === "all"){
+
+            for (i in robaladaList.robaladas) {
+                message.channel.send(robaladaList.robaladas[i]);
+              }
+
+        } else{
+            if(robaladaList.robaladas.length>0) {
+                message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * Math.floor(robaladaList.length-1))]);
             } else {
                 message.channel.send("No robaladas to deliver (yet)");
             }
