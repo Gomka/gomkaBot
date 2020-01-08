@@ -31,9 +31,9 @@ bot.on('message', async message => {
 
     var messageLower = message.content.toLowerCase();
     
-    const messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
-    const messageStringsLower = messageLower.trim().split(/ +/g);
-    const command = messageStringsLower[0];
+    var messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
+    var messageStringsLower = messageLower.trim().split(/ +/g);
+    var command = messageStringsLower[0];
 
     if(command === "ping") {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
@@ -81,7 +81,7 @@ bot.on('message', async message => {
 
         } else if(messageStrings[1] === "cleanse"){
             
-            // robaladaList = null;
+            delete robaladaList.robaladas;
             message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                 
         } else if(messageStrings[1] === "all"){
