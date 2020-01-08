@@ -11,13 +11,7 @@ bot.on('ready', () => {
     var size = bot.guilds.size
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
-    bot.user.setPresence({
-        game: {
-            name: 'your dirty kinks',
-            type: "3",
-            url: "https://www.reddit.com/r/gazing/"
-        }
-    });
+    client.user.setPresence({ game: { name: '👀', type: 3 } });
 });
 
 bot.on("guildCreate", guild => {
