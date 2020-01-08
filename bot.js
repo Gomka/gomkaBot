@@ -6,6 +6,8 @@ const config = require("./config.json");
 
 var robaladaList = require("./robalada.json");
 
+var fs = require('fs');
+
 bot.on('ready', () => {
 
     console.log('c biene');
@@ -68,6 +70,10 @@ bot.on('message', async message => {
             var robaladaStr = message.content.replace("robalada add ", "");
 
             robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
+
+            var jsonRobalada = JSON.stringify(robaladaList);
+
+            fs.writeFile("./robalada.json", jsonRobalada, 'utf8', callback);
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
