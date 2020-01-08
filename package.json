@@ -9,5 +9,17 @@
   "dependencies": {
     "discord.js": "11.1.0",
     "request": "2.81.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gomka/gomkaBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gomka/gomkaBot/issues"
+  },
+  "homepage": "https://github.com/Gomka/gomkaBot#readme"
 }
