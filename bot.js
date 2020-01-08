@@ -65,15 +65,15 @@ bot.on('message', async message => {
 
         if(messageLower.startsWith("robalada add ")) {
 
-            var string = "*";
+            var string = "\*\"";
 
-            messageStrings = messageStrings.splice(0,2); // quitamos "robalada add "
+            messageStrings.shift().shift(); // quitamos "robalada add "
 
             messageStrings.forEach(element => {
                 string +=(element+" ");
             });
 
-            string += "* -Robalito";
+            string += "\"\* -Robalito";
 
             robaladaList.robaladas.push(string);
 
