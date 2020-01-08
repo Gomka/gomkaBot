@@ -11,7 +11,7 @@ bot.on('ready', () => {
     var size = bot.guilds.size
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
-    client.user.setPresence({ game: { name: '👀', type: 3 } });
+    bot.user.setPresence({ game: { name: '👀', type: 3 } });
 });
 
 bot.on("guildCreate", guild => {
