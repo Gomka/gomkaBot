@@ -13,8 +13,8 @@ bot.on('ready', () => {
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
     bot.user.setPresence({
         game: {
-            name: '${size} rectal genocides',
-            type: "WATCHING",
+            name: 'your dirty kinks',
+            type: "3",
             url: "https://www.reddit.com/r/gazing/"
         }
     });
