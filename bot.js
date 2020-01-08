@@ -73,7 +73,9 @@ bot.on('message', async message => {
 
             var jsonRobalada = JSON.stringify(robaladaList);
 
-            fs.writeFile("./robalada.json", jsonRobalada, 'utf8', callback);
+            fs.writeFile("./robalada.json", jsonRobalada, 'utf8', function (err) {
+                console.log("Escrito en persistencia");
+            });
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
