@@ -6,7 +6,7 @@ const config = require("./config.json");
 
 bot.on('ready', () => {
 
-    // console.log('c biene');
+    console.log('c biene');
 
     bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 
