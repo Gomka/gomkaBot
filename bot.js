@@ -9,7 +9,13 @@ bot.on('ready', () => {
     console.log('c biene');
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
-    bot.user.setPresence({ game: { name: 'test', type: 1}});
+    bot.user.setPresence({
+        game: { 
+            name: 'you cum',
+            type: 'WATCHING'
+        },
+        status: 'online'
+    });
 });
 
 bot.on("guildCreate", guild => {
