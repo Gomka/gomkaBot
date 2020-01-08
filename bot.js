@@ -8,18 +8,18 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
 bot.on("guildCreate", guild => {
     // This event triggers when the bot joins a guild.
-    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
-  });
+    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+});
 
 bot.on("guildDelete", guild => {
     // this event triggers when the bot is removed from a guild.
-    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
-  });
+    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+});
 
 bot.on('message', message => {
 
