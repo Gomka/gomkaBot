@@ -4,13 +4,14 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
+const robaladaList;
+
 bot.on('ready', () => {
 
     console.log('c biene');
 
     var size = bot.guilds.size
 
-    // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 });
 
@@ -57,6 +58,29 @@ bot.on('message', async message => {
     if (messageLower.includes("siempre")) {
 
         message.channel.send("S I E M P R E")
+
+    }
+
+    if(command === "robalada" && !message.author.bot) {
+
+        if(messageStringsLower[1]=== "add") {
+
+            var string = "";
+
+            messageStrings = messageStrings.splice(0,2);
+
+            messageStrings.forEach(element => {
+                string +=(element+" ");
+            });
+
+            robaladaList.push(string);
+
+            message.channel.send("`Robalada satisfactoriamente sintetizada.`");
+
+        } else {
+            if(robaladaList.length>0)
+                message.channel.send(robaladaList[Math.floor(Math.random() * Math.floor(robaladaList.length-1))])
+        }
 
     }
 
