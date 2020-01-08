@@ -8,7 +8,7 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    bot.user.setActivity(bot.guilds.size+' children cum', { type: 'WATCHING' })
+    bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' })
 });
 
 bot.on("guildCreate", guild => {
