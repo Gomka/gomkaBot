@@ -35,7 +35,7 @@ bot.on('message', message => {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
         const m = await message.channel.send("Ping?");
-        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@' + message.author.id + '> le pica la cabeza por dentro.`);
+        m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
 
     if (command === '¡ignorebot') {
