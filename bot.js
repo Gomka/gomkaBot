@@ -79,9 +79,9 @@ bot.on('message', async message => {
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
-        } else if(messageStrings[1] === "cleanse"){
+        } else if(messageStrings[1] === "cleanse" && messageStringsLower[2] != null){
             
-            robaladaList.robaladas = [];
+            delete robaladaList.robaladas[parseInt(messageStringsLower[2], 10)];
             message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                 
         } else if(messageStrings[1] === "all"){
