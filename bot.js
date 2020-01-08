@@ -8,7 +8,7 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+    bot.user.setStatus(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
 bot.on("guildCreate", guild => {
