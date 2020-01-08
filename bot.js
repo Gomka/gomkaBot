@@ -9,12 +9,12 @@ bot.on('ready', () => {
     console.log('c biene');
 
     // bot.user.setActivity('${bot.guilds.size} children cum', { type: 'WATCHING' });
-    bot.user.setPresence({
-        game: { 
+    client.user.setPresence({
+        game: {
             name: 'you cum',
-            type: 'WATCHING'
-        },
-        status: 'online'
+            type: "Watching",
+            url: "https://www.reddit.com/r/gazing/"
+        }
     });
 });
 
