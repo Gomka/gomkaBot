@@ -2,13 +2,13 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
-// const config = require("./config.json");
+const config = require("./config.json");
 
 bot.on('ready', () => {
 
     console.log('c biene');
 
-    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
+    bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
 bot.on("guildCreate", guild => {
