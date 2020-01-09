@@ -116,7 +116,13 @@ bot.on('message', async message => {
         } else{
             try {
                 if(robaladaList.robaladas.length>0) {
-                    message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)]);
+                    var stringToPrint = robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)];
+                    if(stringToPrint != null) {
+                        message.channel.send(stringToPrint);
+                    } else {
+                        message.channel.send("algo se ha crujio ");
+                    }
+
                 } else {
                     message.channel.send("No robaladas to deliver (yet)");
                 }
