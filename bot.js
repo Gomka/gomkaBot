@@ -117,6 +117,7 @@ bot.on('message', async message => {
             try {
                 if(robaladaList.robaladas.length>0) {
                     var stringToPrint = robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)];
+                    console.log(stringToPrint);
                     if(stringToPrint != null) {
                         message.channel.send(stringToPrint);
                     } else {
