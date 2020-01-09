@@ -95,7 +95,7 @@ bot.on('message', async message => {
 
                 if(!isNaN(posicionABorrar) && posicionABorrar>=0 && posicionABorrar<robaladaList.robaladas.length) {
 
-                    robaladaList.robaladas[posicionABorrar] = "";
+                    robaladaList.robaladas.splice(posicionABorrar, 1);
 
                     message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                     
