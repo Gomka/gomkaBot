@@ -69,23 +69,23 @@ bot.on('message', async message => {
 
             try {
                 
-            var robaladaStr = message.content.replace("robalada add ", "");
+                var robaladaStr = message.content.replace("robalada add ", "");
 
-            robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
+                robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
 
-            var jsonRobalada = JSON.stringify(robaladaList);
+                var jsonRobalada = JSON.stringify(robaladaList);
 
-            fs.writeFile("./robalada.json", jsonRobalada, 'utf8', function (err) {
-                console.log("Escrito en persistencia");
-            });
+                fs.writeFile("./robalada.json", jsonRobalada, 'utf8', function (err) {
+                    console.log("Escrito en persistencia");
+                });
 
-            message.channel.send("`Robalada satisfactoriamente sintetizada.`");
+                message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
-              }
-              catch(error) {
+            }
+            catch(error) {
                 message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124");
                 console.error(error);
-              }
+            }
 
         } else if(messageStrings[1] === "cleanse"){
 
@@ -96,6 +96,7 @@ bot.on('message', async message => {
                 if(!isNaN(posicionABorrar) && posicionABorrar>=0 && posicionABorrar<robaladaList.robaladas.length) {
 
                     robaladaList.robaladas[posicionABorrar] = "";
+
                     message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                     
                 } else {
@@ -115,9 +116,10 @@ bot.on('message', async message => {
 
         } else{
             try {
-                if(robaladaList.robaladas.length>0) {
+                if(robaladaList.robaladas.isArray(array) && robaladaList.robaladas.length>0) {
+
                     var stringToPrint = robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)];
-                    console.log(stringToPrint);
+
                     if(stringToPrint != null) {
                         message.channel.send(stringToPrint);
                     } else {
