@@ -67,6 +67,8 @@ bot.on('message', async message => {
 
         if(messageLower.startsWith("robalada add ")) {
 
+            try {
+                
             var robaladaStr = message.content.replace("robalada add ", "");
 
             robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
@@ -78,6 +80,12 @@ bot.on('message', async message => {
             });
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
+
+              }
+              catch(error) {
+                message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124");
+                console.error(error);
+              }
 
         } else if(messageStrings[1] === "cleanse"){
 
@@ -95,6 +103,7 @@ bot.on('message', async message => {
             }            
               }
               catch(error) {
+                message.channel.send("@Gomka#9124 Algo se ha crujio oh fuc.");
                 console.error(error);
               }
 
