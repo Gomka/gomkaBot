@@ -79,11 +79,27 @@ bot.on('message', async message => {
 
             message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
-        } else if(messageStrings[1] === "cleanse" && messageStringsLower[2] != null){
-            
-            delete robaladaList.robaladas[parseInt(messageStringsLower[2], 10)];
-            message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+        } else if(messageStrings[1] === "cleanse"){
+
+            try {
                 
+                var posicionABorrar = parseInt(messageStringsLower[2], 10);
+
+            if(posicionABorrar>-1) {
+
+                delete robaladaList.robaladas[posicionABorrar];
+                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+                    
+            } else {
+                message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");    
+            }            
+              }
+              catch(error) {
+                console.error(error);
+              }
+
+            
+            
         } else if(messageStrings[1] === "all"){
 
             for (i in robaladaList.robaladas) {
