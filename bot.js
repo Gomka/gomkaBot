@@ -116,7 +116,7 @@ bot.on('message', async message => {
 
         } else{
             try {
-                if(robaladaList.robaladas.isArray(array) && robaladaList.robaladas.length>0) {
+                if(robaladaList.robaladas && robaladaList.robaladas.length>0) {
 
                     var stringToPrint = robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)];
 
