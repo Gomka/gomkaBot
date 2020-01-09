@@ -93,21 +93,19 @@ bot.on('message', async message => {
                 
                 var posicionABorrar = parseInt(messageStringsLower[2], 10);
 
-            if(posicionABorrar>-1) {
+                if(!isNaN(posicionABorrar) && posicionABorrar>=0 && posicionABorrar<robaladaList.robaladas.length) {
 
-                delete robaladaList.robaladas[posicionABorrar];
-                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+                    delete robaladaList.robaladas[posicionABorrar];
+                    message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
                     
-            } else {
-                message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");    
-            }            
+                } else {
+                    message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");    
+                }            
               }
-              catch(error) {
+            catch(error) {
                 message.channel.send("@Gomka#9124 Algo se ha crujio oh fuc.");
                 console.error(error);
-              }
-
-            
+            }            
             
         } else if(messageStrings[1] === "all"){
 
