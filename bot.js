@@ -110,8 +110,19 @@ bot.on('message', async message => {
             
         } else if(messageStrings[1] === "all"){
 
+            var totalSize = 0;
+            var totalString = "";
+
             for (i in robaladaList.robaladas) {
-                message.channel.send(robaladaList.robaladas[i]);
+
+                while(totalSize+robaladaList.robaladas[i].length+10 < 2000) {
+                    totalString = "```"+i+"-"+robaladaList.robaladas[i]+"```"+"\n";
+                    totalSize += robaladaList.robaladas[i].length+9+i.toString().length;
+                }
+
+                message.channel.send(totalString);
+                totalSize = 0;
+                totalString = "";
               }
 
         } else{
