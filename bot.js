@@ -110,20 +110,27 @@ bot.on('message', async message => {
             
         } else if(messageStrings[1] === "all"){
 
-            var totalSize = 0;
             var totalString = "";
+            var sent = false;
 
             for (i in robaladaList.robaladas) {
 
-                while(totalSize+robaladaList.robaladas[i].length+10 < 2000) {
-                    totalString = "```"+i+"-"+robaladaList.robaladas[i]+"```"+"\n";
-                    totalSize += robaladaList.robaladas[i].length+9+i.toString().length;
+                if((totalString.length+robaladaList.robaladas[i].length+9+i.toString().length) < 2000) {
+
+                    totalString += "```"+i+"-"+robaladaList.robaladas[i]+"```"+"\n";
+                    sent = false;
+
+                } else {
+
+                    message.channel.send(totalString);
+                    sent = true;                    
+                    totalString = "";
+                    
                 }
 
-                message.channel.send(totalString);
-                totalSize = 0;
-                totalString = "";
-              }
+            }
+
+            if(!sent) message.channel.send(totalString);
 
         } else{
             try {
