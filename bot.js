@@ -6,6 +6,8 @@ const config = require("./config.json");
 
 var robaladaList = require("./robalada.json");
 
+var fs = require('fs');
+
 const { Client } = require('pg');
 
 const client = new Client({
@@ -88,7 +90,7 @@ bot.on('message', async message => {
 
             }
             catch (error) {
-                message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124");
+                message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124 ");
                 console.error(error);
             }
 
@@ -109,7 +111,7 @@ bot.on('message', async message => {
                 }
             }
             catch (error) {
-                message.channel.send("@Gomka#9124 Algo se ha crujio oh fuc.");
+                message.channel.send("@Gomka#9124  Algo se ha crujio oh fuc.");
                 console.error(error);
             }
 
