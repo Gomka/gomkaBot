@@ -124,7 +124,7 @@ bot.on('message', async message => {
 
                     message.channel.send(totalString);
                     sent = true;                    
-                    totalString = "";
+                    totalString = "```"+i+"-"+robaladaList.robaladas[i]+"```";
 
                 }
 
