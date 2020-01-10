@@ -6,15 +6,20 @@ const config = require("./config.json");
 
 var robaladaList = require("./robalada.json");
 
-var fs = require('fs');
+const { Client } = require('pg');
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
 
 bot.on('ready', () => {
 
     console.log('c biene');
 
-    var size = bot.guilds.size
-
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
+
+    client.connect();
 });
 
 bot.on("guildCreate", guild => {
@@ -29,22 +34,22 @@ bot.on("guildDelete", guild => {
 
 bot.on('message', async message => {
 
-    if(message.author.bot && config.ignoreBots) return;
+    if (message.author.bot && config.ignoreBots) return;
 
     var messageLower = message.content.toLowerCase();
-    
+
     var messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
     var messageStringsLower = messageLower.trim().split(/ +/g);
     var command = messageStringsLower[0];
 
-    if(command === "ping") {
+    if (command === "ping") {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
 
-    if (command === '¡ignorebot') {
+    /*if (command === '¡ignorebot') {
         if(messageStringsLower[1] === "true") {
 
             config.ignoreBots = true;
@@ -55,7 +60,7 @@ bot.on('message', async message => {
             config.ignoreBots = false;
             message.channel.send("Ignore bots set to `false`");
         }
-    }
+    }*/
 
     if (messageLower.includes("siempre")) {
 
@@ -63,15 +68,15 @@ bot.on('message', async message => {
 
     }
 
-    if(messageLower.includes("robalada") && !message.author.bot) {
+    if (messageLower.includes("robalada") && !message.author.bot) {
 
-        if(messageLower.startsWith("robalada add ")) {
+        if (messageLower.startsWith("robalada add ")) {
 
             try {
-                
+
                 var robaladaStr = message.content.replace("robalada add ", "");
 
-                robaladaList.robaladas.push("\*\""+robaladaStr+"\"\* -Robalito");
+                robaladaList.robaladas.push("\*\"" + robaladaStr + "\"\* -Robalito");
 
                 var jsonRobalada = JSON.stringify(robaladaList);
 
@@ -82,69 +87,70 @@ bot.on('message', async message => {
                 message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
             }
-            catch(error) {
+            catch (error) {
                 message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124");
                 console.error(error);
             }
 
-        } else if(messageStrings[1] === "cleanse"){
+        } else if (messageStrings[1] === "cleanse") {
 
             try {
-                
+
                 var posicionABorrar = parseInt(messageStringsLower[2], 10);
 
-                if(!isNaN(posicionABorrar) && posicionABorrar>=0 && posicionABorrar<robaladaList.robaladas.length) {
+                if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.robaladas.length) {
 
                     robaladaList.robaladas.splice(posicionABorrar, 1);
 
                     message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
-                    
+
                 } else {
-                    message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");    
-                }            
-              }
-            catch(error) {
+                    message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                }
+            }
+            catch (error) {
                 message.channel.send("@Gomka#9124 Algo se ha crujio oh fuc.");
                 console.error(error);
-            }            
-            
-        } else if(messageStrings[1] === "all"){
+            }
+
+        } else if (messageStrings[1] === "all") {
 
             var totalString = "";
             var sent = false;
 
             for (i in robaladaList.robaladas) {
 
-                if((totalString.length+robaladaList.robaladas[i].length+7+i.toString().length) < 2000) {
+                if ((totalString.length + robaladaList.robaladas[i].length + 7 + i.toString().length) < 2000) {
 
-                    totalString += "```"+i+"-"+robaladaList.robaladas[i]+"```";
+                    totalString += "```" + i + "-" + robaladaList.robaladas[i] + "```";
                     sent = false;
 
                 } else {
 
                     message.channel.send(totalString);
-                    sent = true;                    
-                    totalString = "```"+i+"-"+robaladaList.robaladas[i]+"```";
+                    sent = true;
+                    totalString = "```" + i + "-" + robaladaList.robaladas[i] + "```";
 
                 }
 
             }
 
-            if(!sent) message.channel.send(totalString);
+            if (!sent) message.channel.send(totalString);
 
-        } else{
+        } else {
             try {
-                if(robaladaList.robaladas && robaladaList.robaladas.length>0) {
+                if (robaladaList.robaladas && robaladaList.robaladas.length > 0) {
 
                     message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)]);
 
                 } else {
+
                     message.channel.send("No robaladas to deliver (yet)");
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error(error);
-            }              
-            
+            }
+
         }
 
     }
@@ -154,9 +160,9 @@ bot.on('message', async message => {
         var dubs = message.id;
         var tot = 0;
 
-        for (var i = dubs.length-1; i > 0; i--) {
+        for (var i = dubs.length - 1; i > 0; i--) {
 
-            if (dubs.charAt(i-1) == dubs.charAt(i)) {
+            if (dubs.charAt(i - 1) == dubs.charAt(i)) {
                 tot++;
             }
             else {
@@ -180,8 +186,8 @@ bot.on('message', async message => {
                 break;
             case 7: message.reply(dubs + " eight in a row. Loko ke marrrdito ratatwuá");
                 break;
-            case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17: 
-            case 18: message.reply(dubs + " go buy some lotto");
+            case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17:
+            case 18: message.reply(dubs + "... go buy some lotto");
                 break;
             default: message.channel.send(dubs);
                 break;
