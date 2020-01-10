@@ -115,9 +115,9 @@ bot.on('message', async message => {
 
             for (i in robaladaList.robaladas) {
 
-                if((totalString.length+robaladaList.robaladas[i].length+9+i.toString().length) < 2000) {
+                if((totalString.length+robaladaList.robaladas[i].length+7+i.toString().length) < 2000) {
 
-                    totalString += "```"+i+"-"+robaladaList.robaladas[i]+"```"+"\n";
+                    totalString += "```"+i+"-"+robaladaList.robaladas[i]+"```";
                     sent = false;
 
                 } else {
@@ -125,7 +125,7 @@ bot.on('message', async message => {
                     message.channel.send(totalString);
                     sent = true;                    
                     totalString = "";
-                    
+
                 }
 
             }
