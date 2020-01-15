@@ -4,16 +4,14 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-var robaladaList = require("./robalada.json");
-
-var fs = require('fs');
+var robaladaList;
 
 const { Client } = require('pg');
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
-  });
+});
 
 bot.on('ready', () => {
 
@@ -82,10 +80,6 @@ bot.on('message', async message => {
 
                 var jsonRobalada = JSON.stringify(robaladaList);
 
-                fs.writeFile("./robalada.json", jsonRobalada, 'utf8', function (err) {
-                    console.log("Escrito en persistencia");
-                });
-
                 message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
             }
@@ -107,6 +101,7 @@ bot.on('message', async message => {
                     message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
 
                 } else {
+                    
                     message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
                 }
             }
@@ -117,27 +112,34 @@ bot.on('message', async message => {
 
         } else if (messageStrings[1] === "all") {
 
-            var totalString = "";
-            var sent = false;
+            if (robaladaList.robaladas.length == 0) {
 
-            for (i in robaladaList.robaladas) {
+                message.channel.send("Robalada list currently empty.");
 
-                if ((totalString.length + robaladaList.robaladas[i].length + 7 + i.toString().length) < 2000) {
+            } else {
 
-                    totalString += "```" + i + "-" + robaladaList.robaladas[i] + "```";
-                    sent = false;
+                var totalString = "";
+                var sent = false;
 
-                } else {
+                for (i in robaladaList.robaladas) {
 
-                    message.channel.send(totalString);
-                    sent = true;
-                    totalString = "```" + i + "-" + robaladaList.robaladas[i] + "```";
+                    if ((totalString.length + robaladaList.robaladas[i].length + 7 + i.toString().length) < 2000) {
+
+                        totalString += "```" + i + "-" + robaladaList.robaladas[i] + "```";
+                        sent = false;
+
+                    } else {
+
+                        message.channel.send(totalString);
+                        sent = true;
+                        totalString = "```" + i + "-" + robaladaList.robaladas[i] + "```";
+
+                    }
 
                 }
 
+                if (!sent) message.channel.send(totalString);
             }
-
-            if (!sent) message.channel.send(totalString);
 
         } else {
             try {
