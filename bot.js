@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-var robaladaList;
+var robaladaList = [];
 
 const { Client } = require('pg');
 
@@ -20,6 +20,14 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     client.connect();
+
+    client.query('SELECT robalada FROM robaladas;', (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+          robaladaList.push(JSON.stringify(row));
+        }
+        //client.end();
+      });
 });
 
 bot.on("guildCreate", guild => {
@@ -74,11 +82,18 @@ bot.on('message', async message => {
 
             try {
 
-                var robaladaStr = message.content.replace("robalada add ", "");
+                var robaladaStr = "\*\"" + message.content.replace("robalada add ", "") + "\"\* -Robalito";
 
-                robaladaList.robaladas.push("\*\"" + robaladaStr + "\"\* -Robalito");
+                robaladaList.push(robaladaStr);
 
-                var jsonRobalada = JSON.stringify(robaladaList);
+                client.query('INSERT INTO robaladas VALUES('+robaladaStr+');', (err, res) => {
+                    if (err) throw err;
+                    /*
+                    for (let row of res.rows) {
+                      console.log(JSON.stringify(row));
+                    }
+                    client.end();*/
+                  });
 
                 message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
@@ -94,9 +109,18 @@ bot.on('message', async message => {
 
                 var posicionABorrar = parseInt(messageStringsLower[2], 10);
 
-                if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.robaladas.length) {
+                if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
-                    robaladaList.robaladas.splice(posicionABorrar, 1);
+                    client.query('DELETE FROM robaladas WHERE robalada = '+ robaladaList[posicionABorrar]+ ';', (err, res) => {
+                        if (err) throw err;
+                        /*
+                        for (let row of res.rows) {
+                          console.log(JSON.stringify(row));
+                        }
+                        client.end();*/
+                      });
+
+                    robaladaList.splice(posicionABorrar, 1);
 
                     message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
 
@@ -112,7 +136,7 @@ bot.on('message', async message => {
 
         } else if (messageStrings[1] === "all") {
 
-            if (robaladaList.robaladas.length == 0) {
+            if (robaladaList.length == 0) {
 
                 message.channel.send("Robalada list currently empty.");
 
@@ -121,18 +145,18 @@ bot.on('message', async message => {
                 var totalString = "";
                 var sent = false;
 
-                for (i in robaladaList.robaladas) {
+                for (i in robaladaList) {
 
-                    if ((totalString.length + robaladaList.robaladas[i].length + 7 + i.toString().length) < 2000) {
+                    if ((totalString.length + robaladaList[i].length + 7 + i.toString().length) < 2000) {
 
-                        totalString += "```" + i + "-" + robaladaList.robaladas[i] + "```";
+                        totalString += "```" + i + "-" + robaladaList[i] + "```";
                         sent = false;
 
                     } else {
 
                         message.channel.send(totalString);
                         sent = true;
-                        totalString = "```" + i + "-" + robaladaList.robaladas[i] + "```";
+                        totalString = "```" + i + "-" + robaladaList[i] + "```";
 
                     }
 
@@ -143,9 +167,9 @@ bot.on('message', async message => {
 
         } else {
             try {
-                if (robaladaList.robaladas && robaladaList.robaladas.length > 0) {
+                if (robaladaList && robaladaList.length > 0) {
 
-                    message.channel.send(robaladaList.robaladas[Math.floor(Math.random() * robaladaList.robaladas.length)]);
+                    message.channel.send(robaladaList[Math.floor(Math.random() * robaladaList.length)]);
 
                 } else {
 
