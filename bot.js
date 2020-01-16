@@ -21,6 +21,8 @@ bot.on('ready', () => {
 
     client.connect();
 
+
+
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
@@ -86,7 +88,7 @@ bot.on('message', async message => {
 
                 robaladaList.push(robaladaStr);
 
-                client.query('INSERT INTO robaladas VALUES('+robaladaStr+');', (err, res) => {
+                client.query("INSERT INTO robaladas VALUES(\'"+robaladaStr+"\');", (err, res) => {
                     if (err) throw err;
                     /*
                     for (let row of res.rows) {
