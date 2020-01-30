@@ -47,16 +47,15 @@ bot.on('message', async message => {
 
     var messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
     var messageStringsLower = messageLower.trim().split(/ +/g);
-    var command = messageStringsLower[0];
 
-    if (command === "ping") {
+    if (messageStringsLower[0] === "ping") {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
 
-    /*if (command === '¡ignorebot') {
+    /*if (messageStringsLower[0] === '¡ignorebot') {
         if(messageStringsLower[1] === "true") {
 
             config.ignoreBots = true;
@@ -148,7 +147,7 @@ bot.on('message', async message => {
 
             }
 
-        } else if (messageStrings[1] === "all" && message.author.id == process.env.AUTHOR_ID) {
+        } else if (messageLower === "robalada all" && message.author.id == process.env.AUTHOR_ID) {
 
             if (robaladaList.length == 0) {
 
@@ -180,9 +179,9 @@ bot.on('message', async message => {
 
         	message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
 
-        } else if (messageStrings[1] === "robalada last") {
+        } else if (messageLower === "robalada last") {
 
-        	message.channel.send("En total hay "+robaladaList.length+" robaladas. La última es:");
+        	message.channel.send("En total hay " + robaladaList.length + " robaladas. La última es:");
         	message.channel.send(robaladaList.length -1)
 
         } else {
@@ -203,7 +202,7 @@ bot.on('message', async message => {
 
     }
 
-    if (command === "roll") {
+    if (messageStringsLower[0] === "roll") {
 
         var dubs = message.id;
         var tot = 0;
