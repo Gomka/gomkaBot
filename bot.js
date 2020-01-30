@@ -85,6 +85,8 @@ bot.on('message', async message => {
 
                 var robaladaStr = message.content.replace("robalada add ", "");
 
+                robaladaStr = robaladaStr.replace("\'", "");
+
                 robaladaList.push(robaladaStr);
 
                 var sql = "INSERT INTO robaladas VALUES(default, ?);";
