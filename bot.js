@@ -80,13 +80,15 @@ bot.on('message', async message => {
 
         if (messageLower.startsWith("robalada add ")) {
 
+            if(messageLower.length>13 && message.author.id == process.env.AUTHOR_ID) {
+
             try {
 
                 var robaladaStr = message.content.replace("robalada add ", "");
 
                 robaladaList.push(robaladaStr);
 
-                client.query("INSERT INTO robaladas VALUES(default, "+robaladaStr+");", (err, res) => {
+                client.query("INSERT INTO robaladas VALUES(default, \"" + robaladaStr + "\");", (err, res) => {
                     if (err) throw err;
                     /*
                     for (let row of res.rows) {
@@ -99,39 +101,53 @@ bot.on('message', async message => {
 
             }
             catch (error) {
-                message.channel.send("Algo se ha crujio oh fuc. @Gomka#9124 ");
+                message.channel.send("Algo se ha crujio oh fuc");
                 console.error(error);
+            }
+
+            } else {
+
+                message.channel.send("Kemekomenta kuenta");
+
             }
 
         } else if (messageStrings[1] === "cleanse") {
 
-            try {
+            if(message.author.id == process.env.AUTHOR_ID) {
 
-                var posicionABorrar = parseInt(messageStringsLower[2], 10);
+                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
 
-                if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
+            } else {
 
-                    client.query('DELETE FROM robaladas WHERE robalada = '+ robaladaList[posicionABorrar]+ ';', (err, res) => {
-                        if (err) throw err;
-                        /*
-                        for (let row of res.rows) {
-                          console.log(JSON.stringify(row));
-                        }
-                        client.end();*/
-                      });
+                try {
 
-                    robaladaList.splice(posicionABorrar, 1);
-
-                    message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
-
-                } else {
-                    
-                    message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                    var posicionABorrar = parseInt(messageStringsLower[2], 10);
+    
+                    if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
+    
+                        client.query('DELETE FROM robaladas WHERE robalada = '+ robaladaList[posicionABorrar]+ ';', (err, res) => {
+                            if (err) throw err;
+                            /*
+                            for (let row of res.rows) {
+                              console.log(JSON.stringify(row));
+                            }
+                            client.end();*/
+                          });
+    
+                        robaladaList.splice(posicionABorrar, 1);
+    
+                        message.channel.send("Robalada cleansed successfully");
+    
+                    } else {
+                        
+                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                    }
                 }
-            }
-            catch (error) {
-                message.channel.send("@Gomka#9124  Algo se ha crujio oh fuc.");
-                console.error(error);
+                catch (error) {
+                    message.channel.send("@Gomka#9124  Algo se ha crujio oh fuc.");
+                    console.error(error);
+                }
+
             }
 
         } else if (messageStrings[1] === "all") {
