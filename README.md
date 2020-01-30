@@ -17,7 +17,8 @@ All variables from process.env are from heroku's config vars.
 if a message contains the word `siempre` the bot will say S I E M P R E
 
 `robalada` family of commands: Consists on a postgresql based persistency storage of strings.
-	- `robalada add []`: If that message was sent by the author of the bot, the string in [] is added to the database.
-	- `robalada cleanse [n]`: If the message was sent by the author of the bot, deletes the n string in the list of robaladas from the database
-	- `robalada all` prints all the strings in the database
+	- `robalada add [string]`: If that message was sent by the author of the bot, the string in [] is added to the database.
+	- `robalada cleanse [int]`: If the message was sent by the author of the bot, deletes the n string in the list of robaladas from the database.
+	- `robalada all`: Prints all the strings in the database.
+	- `robalada num [int]`: Prints the nth robalada.
 	- if a message contains the word `robalada` and is not triggering the previous commands listed, the bot will print a random string from the robalada database.

@@ -176,6 +176,10 @@ bot.on('message', async message => {
                 message.channel.send(totalString);
             }
 
+        } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>0) {
+
+        	message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+
         } else {
             try {
                 if (robaladaList && robaladaList.length > 0) {
