@@ -86,7 +86,7 @@ bot.on('message', async message => {
                 var robaladaStr = message.content.replace("robalada add ", "");
 
                 robaladaStr = robaladaStr.replace(/'/g, "");
-                robaladaStr = robaladaStr.replace(/\n/g, " ");
+                robaladaStr = robaladaStr.replace(/\n/g, ", ");
                 robaladaStr = robaladaStr.replace(/\"/g, "*");
 
                 robaladaList.push(robaladaStr);
