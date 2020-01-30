@@ -4,6 +4,8 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
+var mysql = require('mysql');
+
 const { Client } = require('pg');
 
 var robaladaList = [];
