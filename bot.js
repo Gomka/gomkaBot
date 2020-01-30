@@ -9,7 +9,7 @@ const { Client } = require('pg');
 var robaladaList = [];
 
 const client = new Client({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
 });
 
@@ -24,20 +24,17 @@ bot.on('ready', () => {
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
-          robaladaList.push(row.robalada); // JSON.stringify(row)
+          robaladaList.push(row.robalada);
         }
-        //client.end();
       });
 });
 
 bot.on("guildCreate", guild => {
     // This event triggers when the bot joins a guild.
-    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
 bot.on("guildDelete", guild => {
     // this event triggers when the bot is removed from a guild.
-    // bot.user.setActivity(`Exceso de ${bot.guilds.size} cromosomas`);
 });
 
 bot.on('message', async message => {
@@ -90,11 +87,6 @@ bot.on('message', async message => {
 
                 client.query("INSERT INTO robaladas VALUES(default, \'" + robaladaStr + "\');", (err, res) => {
                     if (err) throw err;
-                    /*
-                    for (let row of res.rows) {
-                      console.log(JSON.stringify(row));
-                    }
-                    client.end();*/
                   });
 
                 message.channel.send("`Robalada satisfactoriamente sintetizada.`");
@@ -123,11 +115,6 @@ bot.on('message', async message => {
     
                         client.query("DELETE FROM robaladas WHERE robalada = \'"+ robaladaList[posicionABorrar]+ "\';", (err, res) => {
                             if (err) throw err;
-                            /*
-                            for (let row of res.rows) {
-                              console.log(JSON.stringify(row));
-                            }
-                            client.end();*/
                           });
     
                         robaladaList.splice(posicionABorrar, 1);
@@ -140,7 +127,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    message.channel.send("@Gomka#9124  Algo se ha crujio oh fuc.");
+                    message.channel.send("Algo se ha crujio :/");
                     console.error(error);
                 }
 

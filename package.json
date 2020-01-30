@@ -1,7 +1,7 @@
 {
   "name": "gomka-bot",
   "description": "Gomka's wonky bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/Gomka/gomkaBot.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Gomka",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Gomka/gomkaBot/issues"
