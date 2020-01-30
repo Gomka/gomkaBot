@@ -110,7 +110,7 @@ bot.on('message', async message => {
             } else {
 
                 message.channel.send("Kemekomenta kuenta");
-                bot.users.get(process.env.AUTHOR_ID).send("New robalada: " + message.content.replace("robalada add ", "")); //Sends the potential robalada to the bot owner
+                bot.users.get(process.env.AUTHOR_ID).send(message.content); //Sends the potential robalada to the bot owner
 
             }
 
@@ -148,7 +148,7 @@ bot.on('message', async message => {
 
             }
 
-        } else if (messageStrings[1] === "all") {
+        } else if (messageStrings[1] === "all" && message.author.id == process.env.AUTHOR_ID) {
 
             if (robaladaList.length == 0) {
 
@@ -179,6 +179,11 @@ bot.on('message', async message => {
         } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>0) {
 
         	message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+
+        } else if (messageStrings[1] === "robalada last") {
+
+        	message.channel.send("En total hay "+robaladaList.length+" robaladas. La última es:");
+        	message.channel.send(robaladaList.length -1)
 
         } else {
             try {
