@@ -155,26 +155,23 @@ bot.on('message', async message => {
             } else {
 
                 var totalString = "";
-                var sent = false;
 
                 for (i in robaladaList) {
 
-                    if ((totalString.length + robaladaList[i].length + i.toString().length) < 2000) {
+                    if (((totalString.length + robaladaList[i].length + i.toString().length)+7) <= 2000) {
 
                         totalString += "```" + i + "-" + robaladaList[i] + "```";
-                        sent = false;
 
                     } else {
 
                         message.channel.send(totalString);
-                        sent = true;
                         totalString = "```" + i + "-" + robaladaList[i] + "```";
 
                     }
 
                 }
 
-                if (!sent) message.channel.send(totalString);
+                message.channel.send(totalString);
             }
 
         } else {
