@@ -24,7 +24,7 @@ bot.on('ready', () => {
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
-          robaladaList.push(JSON.stringify(row));
+          robaladaList.push(row.robalada); // JSON.stringify(row)
         }
         //client.end();
       });
