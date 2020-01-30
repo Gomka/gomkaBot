@@ -6,6 +6,8 @@ const config = require("./config.json");
 
 const { Client } = require('pg');
 
+var robaladaList = [];
+
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
@@ -18,8 +20,6 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     client.connect();
-
-    var robaladaList = [];
 
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
@@ -82,7 +82,7 @@ bot.on('message', async message => {
 
             try {
 
-                var robaladaStr = "\*\"" + message.content.replace("robalada add ", "") + "\"\* -Robalito";
+                var robaladaStr = message.content.replace("robalada add ", "");
 
                 robaladaList.push(robaladaStr);
 
@@ -147,7 +147,7 @@ bot.on('message', async message => {
 
                 for (i in robaladaList) {
 
-                    if ((totalString.length + robaladaList[i].length + 7 + i.toString().length) < 2000) {
+                    if ((totalString.length + robaladaList[i].length + i.toString().length) < 2000) {
 
                         totalString += "```" + i + "-" + robaladaList[i] + "```";
                         sent = false;
