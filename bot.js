@@ -114,11 +114,7 @@ bot.on('message', async message => {
         } else if (messageStrings[1] === "cleanse") {
 
             if(message.author.id == process.env.AUTHOR_ID) {
-
-                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
-
-            } else {
-
+                
                 try {
 
                     var posicionABorrar = parseInt(messageStringsLower[2], 10);
@@ -147,6 +143,10 @@ bot.on('message', async message => {
                     message.channel.send("@Gomka#9124  Algo se ha crujio oh fuc.");
                     console.error(error);
                 }
+
+            } else {
+
+                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
 
             }
 
