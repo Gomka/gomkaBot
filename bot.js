@@ -75,9 +75,9 @@ bot.on('message', async message => {
 
     if (messageLower.includes("robalada") && !message.author.bot) {
 
-        if (messageLower.startsWith("robalada add ")) {
+        if (messageLower.startsWith("robalada add ") && messageLower.length>13) {
 
-            if(messageLower.length>13 && message.author.id == process.env.AUTHOR_ID) {
+            if(message.author.id == process.env.AUTHOR_ID) {
 
             try {
 
@@ -85,9 +85,13 @@ bot.on('message', async message => {
 
                 robaladaList.push(robaladaStr);
 
-                client.query("INSERT INTO robaladas VALUES(default, \'" + robaladaStr + "\');", (err, res) => {
+                var sql = "INSERT INTO robaladas VALUES(default, ?);";
+                var inserts = [robaladaStr];
+                sql = mysql.format(sql, inserts);
+
+                client.query(sql, (err, res) => {
                     if (err) throw err;
-                  });
+                });
 
                 message.channel.send("`Robalada satisfactoriamente sintetizada.`");
 
@@ -100,6 +104,7 @@ bot.on('message', async message => {
             } else {
 
                 message.channel.send("Kemekomenta kuenta");
+                bot.users.get(process.env.AUTHOR_ID).send("New robalada: " + message.content.replace("robalada add ", "")); //Sends the potential robalada to the bot owner
 
             }
 
