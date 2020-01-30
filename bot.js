@@ -88,7 +88,7 @@ bot.on('message', async message => {
 
                 robaladaList.push(robaladaStr);
 
-                client.query("INSERT INTO robaladas VALUES(default, \"" + robaladaStr + "\");", (err, res) => {
+                client.query("INSERT INTO robaladas VALUES(default, \'" + robaladaStr + "\');", (err, res) => {
                     if (err) throw err;
                     /*
                     for (let row of res.rows) {
@@ -121,7 +121,7 @@ bot.on('message', async message => {
     
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
     
-                        client.query('DELETE FROM robaladas WHERE robalada = '+ robaladaList[posicionABorrar]+ ';', (err, res) => {
+                        client.query("DELETE FROM robaladas WHERE robalada = \'"+ robaladaList[posicionABorrar]+ "\';", (err, res) => {
                             if (err) throw err;
                             /*
                             for (let row of res.rows) {
