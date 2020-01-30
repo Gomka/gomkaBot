@@ -4,8 +4,6 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-var robaladaList = [];
-
 const { Client } = require('pg');
 
 const client = new Client({
@@ -21,7 +19,7 @@ bot.on('ready', () => {
 
     client.connect();
 
-
+    var robaladaList = [];
 
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
@@ -88,7 +86,7 @@ bot.on('message', async message => {
 
                 robaladaList.push(robaladaStr);
 
-                client.query("INSERT INTO robaladas VALUES("+robaladaStr+");", (err, res) => {
+                client.query("INSERT INTO robaladas VALUES(default, "+robaladaStr+");", (err, res) => {
                     if (err) throw err;
                     /*
                     for (let row of res.rows) {
