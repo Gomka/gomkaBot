@@ -161,7 +161,7 @@ bot.on('message', async message => {
 
                 for (i in robaladaList) {
 
-                    /*
+                    
                     if (((totalString.length + robaladaList[i].length + i.toString().length)+7) <= 2000) {
 
                         totalString += "```" + i + "-" + robaladaList[i] + "```";
@@ -172,8 +172,7 @@ bot.on('message', async message => {
                         totalString = "```" + i + "-" + robaladaList[i] + "```";
 
                     }
-                    */
-                   totalString += i + "-" + robaladaList[i] + "\n";
+
                 }
 
                 message.channel.send(totalString);
