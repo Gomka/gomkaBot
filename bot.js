@@ -181,8 +181,10 @@ bot.on('message', async message => {
 
         } else if (messageLower === "robalada last") {
 
-        	message.channel.send("En total hay " + robaladaList.length + " robaladas. La última es:");
-        	message.channel.send(robaladaList.length -1)
+        	var length = robaladaList.length;
+
+        	message.channel.send("En total hay " + length + " robaladas. La última (índice " + (length-1) +") es:");
+        	message.channel.send(robaladaList[length -1]);
 
         } else {
             try {
