@@ -179,7 +179,17 @@ bot.on('message', async message => {
 
         } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>0) {
 
-        	message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+            if (parseInt(messageStringsLower[2], 10)<robaladaList.length) {
+
+                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+
+            } else {
+
+                message.channel.send("Aquesta robalesca encara no existeix (de moment)");
+
+            }
+
+
 
         } else if (messageLower === "robalada last") {
 
