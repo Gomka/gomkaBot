@@ -10,7 +10,8 @@
     "discord.js": "11.1.0",
     "mysql": "^2.18.1",
     "pg": "^7.17.0",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "sanitize": "^2.1.0"
   },
   "devDependencies": {},
   "repository": {
