@@ -4,9 +4,7 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-const mysql = require('mysql');
-
-const santitize = require('sanitize');
+var mysql = require('mysql');
 
 const { Client } = require('pg');
 
@@ -86,10 +84,7 @@ bot.on('message', async message => {
 
                 var robaladaStr = message.content.replace("robalada add ", "");
 
-                robaladaStr = santitize.primitives(robaladaStr);
-
                 robaladaStr = robaladaStr.replace(/'/g, "");
-                robaladaStr = robaladaStr.replace(/\n/g, ", ");
                 robaladaStr = robaladaStr.replace(/\\n/g, ", ");
                 robaladaStr = robaladaStr.replace(/\r/g, ", ");
                 robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
