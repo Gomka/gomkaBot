@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 const { Client } = require('pg');
 
@@ -22,7 +22,6 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     client.connect();
-
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
