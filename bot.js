@@ -32,10 +32,12 @@ bot.on('ready', () => {
 
 bot.on("guildCreate", guild => {
     // This event triggers when the bot joins a guild.
+    console.log('new guild');
 });
 
 bot.on("guildDelete", guild => {
     // this event triggers when the bot is removed from a guild.
+    console.log('left guild');
 });
 
 bot.on('message', async message => {
@@ -81,7 +83,7 @@ bot.on('message', async message => {
 
             try {
 
-                var robaladaStr = message.content.replace("robalada add ", "");
+                var robaladaStr = message.content.substr(13);
 
                 robaladaStr = robaladaStr.replace(/'/g, "");
                 robaladaStr = robaladaStr.replace(/\n/g, ", ");
@@ -177,7 +179,7 @@ bot.on('message', async message => {
                 message.channel.send(totalString);
             }
 
-        } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>0) {
+        } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>=0) {
 
             if (parseInt(messageStringsLower[2], 10)<robaladaList.length) {
 
