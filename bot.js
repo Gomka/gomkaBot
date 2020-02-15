@@ -102,9 +102,9 @@ bot.on('message', async message => {
                     if (err) throw err;
                 });
 
-                var length = robaladaList.length;
+                var length = robaladaList.length -1;
 
-                message.channel.send("`Robalada nº" + length-1 + " satisfactoriamente sintetizada.`");
+                message.channel.send("`Robalada nº" + length + " satisfactoriamente sintetizada.`");
 
             }
             catch (error) {
