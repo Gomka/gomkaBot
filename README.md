@@ -16,7 +16,7 @@ if a message contains the word `siempre` the bot will say S I E M P R E
 
 ### `robalada` family of commands: Consists on a postgresql based persistency storage of strings.
 
-`robalada add [string]`: If that message was sent by the author of the bot, the string in [] is added to the database.
+`robalada add [string]`: If that message was sent by the author of the bot, the string in [] is added to the database, and the bot will announce the index of the robalada added.
 	
 `robalada cleanse [int]`: If the message was sent by the author of the bot, deletes the n string in the list of robaladas from the database.
 	
