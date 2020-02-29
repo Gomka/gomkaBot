@@ -75,6 +75,12 @@ bot.on('message', async message => {
 
     }
 
+    if (messageLower == "robalda") {
+
+        message.channel.send("ximplet, ximplet...")
+
+    }
+
     if (messageLower.includes("robalada") && !message.author.bot) {
 
         if (messageLower.startsWith("robalada add ") && messageLower.length>13) {
@@ -206,7 +212,9 @@ bot.on('message', async message => {
             try {
                 if (robaladaList && robaladaList.length > 0) {
 
-                    message.channel.send(robaladaList[Math.floor(Math.random() * robaladaList.length)]);
+                    index = Math.floor(Math.random() * robaladaList.length);
+
+                    message.channel.send("`"+index+"`:"+robaladaList[index]);
 
                 } else {
 
