@@ -92,10 +92,10 @@ bot.on('message', async message => {
                 var robaladaStr = message.content.substr(13);
 
                 robaladaStr = robaladaStr.replace(/'/g, "");
-                robaladaStr = robaladaStr.replace(/\n/g, ", ");
-                robaladaStr = robaladaStr.replace(/\\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
                 robaladaStr = robaladaStr.replace(/\r/g, ", ");
-                robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
                 robaladaStr = robaladaStr.replace(/\\"/g, "*");
 
                 robaladaList.push(robaladaStr);
@@ -214,7 +214,7 @@ bot.on('message', async message => {
 
                     index = Math.floor(Math.random() * robaladaList.length);
 
-                    message.channel.send("`"+index+"`:"+robaladaList[index]);
+                    message.channel.send("`"+index+":`"+robaladaList[index]);
 
                 } else {
 
