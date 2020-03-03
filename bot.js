@@ -285,34 +285,36 @@ bot.on('message', async message => {
 
     }
 
-});
+    function robaladaRandom(isShiny) {
 
-function robaladaRandom(isShiny) {
-
-    if (isShiny) {
-        if (robaladaShinyList && robaladaShinyList.length > 0) {
-
-            index = Math.floor(Math.random() * robaladaShinyList.length);
-
-            message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` "+robaladaShinyList[index]);
-
+        if (isShiny) {
+            if (robaladaShinyList && robaladaShinyList.length > 0) {
+    
+                index = Math.floor(Math.random() * robaladaShinyList.length);
+    
+                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` "+robaladaShinyList[index]);
+    
+            } else {
+    
+                message.channel.send("No robaladas to deliver (yet)");
+            }
         } else {
-
-            message.channel.send("No robaladas to deliver (yet)");
-        }
-    } else {
-        if (robaladaList && robaladaList.length > 0) {
-
-            index = Math.floor(Math.random() * robaladaList.length);
-
-            message.channel.send("`"+index+":`"+robaladaList[index]);
-
-        } else {
-
-            message.channel.send("No robaladas to deliver (yet)");
+            if (robaladaList && robaladaList.length > 0) {
+    
+                index = Math.floor(Math.random() * robaladaList.length);
+    
+                message.channel.send("`"+index+":`"+robaladaList[index]);
+    
+            } else {
+    
+                message.channel.send("No robaladas to deliver (yet)");
+            }
         }
     }
-}
+
+});
+
+
 
 // Heroku integration
 
