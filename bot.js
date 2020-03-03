@@ -9,6 +9,7 @@ const mysql = require('mysql');
 const { Client } = require('pg');
 
 var robaladaList = [];
+var robaladaShinyList = [];
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
@@ -26,6 +27,13 @@ bot.on('ready', () => {
         if (err) throw err;
         for (let row of res.rows) {
           robaladaList.push(row.robalada);
+        }
+      });
+    
+    client.query('SELECT robalada FROM robaladasshiny;', (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+          robaladaShinyList.push(row.robalada);
         }
       });
 });
@@ -81,7 +89,13 @@ bot.on('message', async message => {
 
     }
 
+    if (messageLower == "test123") {
+        robaladaRandom(false);
+    }
+
     if (messageLower.includes("robalada") && !message.author.bot) {
+
+        shiny = (Math.floor(Math.random() * 100) == 0);
 
         if (messageLower.startsWith("robalada add ") && messageLower.length>13) {
 
@@ -103,6 +117,7 @@ bot.on('message', async message => {
                 robaladaList.push(robaladaStr);
 
                 var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
+                
                 //var inserts = [robaladaStr];
                 //sql = mysql.format(sql, inserts);
 
@@ -271,6 +286,33 @@ bot.on('message', async message => {
     }
 
 });
+
+function robaladaRandom(isShiny) {
+
+    if (isShiny) {
+        if (robaladaShinyList && robaladaShinyList.length > 0) {
+
+            index = Math.floor(Math.random() * robaladaShinyList.length);
+
+            message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` "+robaladaShinyList[index]);
+
+        } else {
+
+            message.channel.send("No robaladas to deliver (yet)");
+        }
+    } else {
+        if (robaladaList && robaladaList.length > 0) {
+
+            index = Math.floor(Math.random() * robaladaList.length);
+
+            message.channel.send("`"+index+":`"+robaladaList[index]);
+
+        } else {
+
+            message.channel.send("No robaladas to deliver (yet)");
+        }
+    }
+}
 
 // Heroku integration
 
