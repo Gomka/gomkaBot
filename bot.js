@@ -91,18 +91,20 @@ bot.on('message', async message => {
 
                 var robaladaStr = message.content.substr(13);
 
-                robaladaStr = robaladaStr.replace(/'/g, "");
+                //The commented code is string sanitization. For your database's sake, uncomment it
+
+                //robaladaStr = robaladaStr.replace(/'/g, "");
                 //robaladaStr = robaladaStr.replace(/\n/g, ", ");
                 //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
-                robaladaStr = robaladaStr.replace(/\r/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\r/g, ", ");
                 //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
-                robaladaStr = robaladaStr.replace(/\\"/g, "*");
+                //robaladaStr = robaladaStr.replace(/\\"/g, "*");
 
                 robaladaList.push(robaladaStr);
 
-                var sql = "INSERT INTO robaladas VALUES(default, ?);";
-                var inserts = [robaladaStr];
-                sql = mysql.format(sql, inserts);
+                var sql = "INSERT INTO robaladas VALUES(default, "+robaladaStr+");"; //replace ["+robaladaStr+"] with [?]
+                //var inserts = [robaladaStr];
+                //sql = mysql.format(sql, inserts);
 
                 client.query(sql, (err, res) => {
                     if (err) throw err;
