@@ -99,147 +99,27 @@ bot.on('message', async message => {
 
         if (messageLower.startsWith("robalada add ") && messageLower.length>13) {
 
-            if(message.author.id == process.env.AUTHOR_ID) {
-
-            try {
-
-                var robaladaStr = message.content.substr(13);
-
-                //The commented code is string sanitization. For your database's sake, uncomment it
-
-                //robaladaStr = robaladaStr.replace(/'/g, "");
-                //robaladaStr = robaladaStr.replace(/\n/g, ", ");
-                //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
-                //robaladaStr = robaladaStr.replace(/\r/g, ", ");
-                //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
-                //robaladaStr = robaladaStr.replace(/\\"/g, "*");
-
-                robaladaList.push(robaladaStr);
-
-                var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
-                
-                //var inserts = [robaladaStr];
-                //sql = mysql.format(sql, inserts);
-
-                client.query(sql, (err, res) => {
-                    if (err) throw err;
-                });
-
-                var length = robaladaList.length -1;
-
-                message.channel.send("`Robalada nº" + length + " satisfactoriamente sintetizada.`");
-
-            }
-            catch (error) {
-                message.channel.send("Algo se ha crujio oh fuc");
-                console.error(error);
-            }
-
-            } else {
-
-                message.channel.send("Kemekomenta kuenta");
-                bot.users.get(process.env.AUTHOR_ID).send(message.content); //Sends the potential robalada to the bot owner
-
-            }
+            robaladaAdd();
 
         } else if (messageStrings[1] === "cleanse") {
 
-            if(message.author.id == process.env.AUTHOR_ID) {
-                
-                try {
-
-                    var posicionABorrar = parseInt(messageStringsLower[2], 10);
-    
-                    if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
-    
-                        client.query("DELETE FROM robaladas WHERE robalada = \'"+ robaladaList[posicionABorrar]+ "\';", (err, res) => {
-                            if (err) throw err;
-                          });
-    
-                        robaladaList.splice(posicionABorrar, 1);
-    
-                        message.channel.send("Robalada cleansed successfully");
-    
-                    } else {
-                        
-                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
-                    }
-                }
-                catch (error) {
-                    message.channel.send("Algo se ha crujio :/");
-                    console.error(error);
-                }
-
-            } else {
-
-                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
-
-            }
+            robaladaCleanse();
 
         } else if (messageLower === "robalada all" && message.author.id == process.env.AUTHOR_ID) {
 
-            if (robaladaList.length == 0) {
-
-                message.channel.send("Robalada list currently empty.");
-
-            } else {
-
-                var totalString = "";
-
-                for (i in robaladaList) {
-
-                    if (((totalString.length + robaladaList[i].length + i.toString().length)+7) <= 2000) {
-
-                        totalString += "```" + i + "-" + robaladaList[i] + "```";
-
-                    } else {
-
-                        message.channel.send(totalString);
-                        totalString = "```" + i + "-" + robaladaList[i] + "```";
-
-                    }
-
-                }
-
-                message.channel.send(totalString);
-            }
+            robaladaAll();
 
         } else if (messageStrings[1] === "num" && parseInt(messageStringsLower[2], 10)>=0) {
 
-            if (parseInt(messageStringsLower[2], 10)<robaladaList.length) {
-
-                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
-
-            } else {
-
-                message.channel.send("Aquesta robalesca encara no existeix (de moment)");
-
-            }
-
-
+            robaladaNum();
 
         } else if (messageLower === "robalada last") {
 
-        	var length = robaladaList.length;
-
-        	message.channel.send("En total hay " + length + " robaladas. La última (índice " + (length-1) +") es:");
-        	message.channel.send(robaladaList[length -1]);
+            robaladaLast();
 
         } else {
-            try {
-                if (robaladaList && robaladaList.length > 0) {
 
-                    index = Math.floor(Math.random() * robaladaList.length);
-
-                    message.channel.send("`"+index+":`"+robaladaList[index]);
-
-                } else {
-
-                    message.channel.send("No robaladas to deliver (yet)");
-                }
-            } catch (error) {
-                console.error(error);
-            }
+            robaladaRandom(shiny);
 
         }
 
@@ -285,9 +165,142 @@ bot.on('message', async message => {
 
     }
 
-    function robaladaRandom(isShiny) {
+    function robaladaAdd() {
+        
+        if(message.author.id == process.env.AUTHOR_ID) {
 
-        if (isShiny) {
+            try {
+
+                var robaladaStr = message.content.substr(13);
+
+                //The commented code is string sanitization. For your database's sake, uncomment it
+
+                //robaladaStr = robaladaStr.replace(/'/g, "");
+                //robaladaStr = robaladaStr.replace(/\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\r/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
+                //robaladaStr = robaladaStr.replace(/\\"/g, "*");
+
+                robaladaList.push(robaladaStr);
+
+                var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
+                
+                //var inserts = [robaladaStr];
+                //sql = mysql.format(sql, inserts);
+
+                client.query(sql, (err, res) => {
+                    if (err) throw err;
+                });
+
+                var length = robaladaList.length -1;
+
+                message.channel.send("`Robalada nº" + length + " satisfactoriamente sintetizada.`");
+
+            }
+            catch (error) {
+                message.channel.send("Algo se ha crujio oh fuc");
+                console.error(error);
+            }
+
+            } else {
+
+                message.channel.send("Kemekomenta kuenta");
+                bot.users.get(process.env.AUTHOR_ID).send(message.content); //Sends the potential robalada to the bot owner
+
+            }
+    }
+
+    function robaladaCleanse() {
+        
+
+        if(message.author.id == process.env.AUTHOR_ID) {
+                
+            try {
+
+                var posicionABorrar = parseInt(messageStringsLower[2], 10);
+
+                if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
+
+                    client.query("DELETE FROM robaladas WHERE robalada = \'"+ robaladaList[posicionABorrar]+ "\';", (err, res) => {
+                        if (err) throw err;
+                      });
+
+                    robaladaList.splice(posicionABorrar, 1);
+
+                    message.channel.send("Robalada cleansed successfully");
+
+                } else {
+                    
+                    message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                }
+            }
+            catch (error) {
+                message.channel.send("Algo se ha crujio :/");
+                console.error(error);
+            }
+
+        } else {
+
+            message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+
+        }
+    }
+
+    function robaladaAll() {
+        
+        if (robaladaList.length == 0) {
+
+            message.channel.send("Robalada list currently empty.");
+
+        } else {
+
+            var totalString = "";
+
+            for (i in robaladaList) {
+
+                if (((totalString.length + robaladaList[i].length + i.toString().length)+7) <= 2000) {
+
+                    totalString += "```" + i + "-" + robaladaList[i] + "```";
+
+                } else {
+
+                    message.channel.send(totalString);
+                    totalString = "```" + i + "-" + robaladaList[i] + "```";
+
+                }
+            }
+
+            message.channel.send(totalString);
+        }
+    }
+
+    function robaladaNum() {
+        
+        if (parseInt(messageStringsLower[2], 10)<robaladaList.length) {
+
+            message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+
+        } else {
+
+            message.channel.send("Aquesta robalesca encara no existeix (de moment)");
+
+        }
+    }
+
+    function robaladaLast() {
+        
+        var length = robaladaList.length;
+
+        message.channel.send("En total hay " + length + " robaladas. La última (índice " + (length-1) +") es:");
+        message.channel.send(robaladaList[length -1]);
+
+    }
+
+    function robaladaRandom(Shiny) {
+
+        if (Shiny) {
+            
             if (robaladaShinyList && robaladaShinyList.length > 0) {
     
                 index = Math.floor(Math.random() * robaladaShinyList.length);
@@ -296,9 +309,10 @@ bot.on('message', async message => {
     
             } else {
     
-                message.channel.send("No robaladas to deliver (yet)");
+                message.channel.send("No robaladas SHINY to deliver (yet)");
             }
         } else {
+
             if (robaladaList && robaladaList.length > 0) {
     
                 index = Math.floor(Math.random() * robaladaList.length);
@@ -313,8 +327,6 @@ bot.on('message', async message => {
     }
 
 });
-
-
 
 // Heroku integration
 
