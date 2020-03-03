@@ -89,10 +89,6 @@ bot.on('message', async message => {
 
     }
 
-    if (messageLower == "test123") {
-        robaladaRandom(false);
-    }
-
     if (messageLower.includes("robalada") && !message.author.bot) {
 
         shiny = (Math.floor(Math.random() * 100) == 0);
@@ -125,11 +121,11 @@ bot.on('message', async message => {
 
             robaladaNum(true);
 
-        } else if (messageLower.startsWith("robalada num") && parseInt(messageStringsLower[2], 10) >= 0) {
+        } else if (messageLower.startsWith("robalada num") && parseInt(messageStringsLower[2], 10) >= 0 && message.author.id == process.env.AUTHOR_ID) {
 
             robaladaNum(false);
 
-        } else if (messageLower === "robalada shiny last") {
+        } else if (messageLower === "robalada shiny last" && message.author.id == process.env.AUTHOR_ID) {
 
             robaladaLast(true);
 
@@ -411,9 +407,9 @@ bot.on('message', async message => {
 
         if (shiny) {
 
-            if (parseInt(messageStringsLower[2], 10) < robaladaShinyList.length) {
+            if (parseInt(messageStringsLower[3], 10) < robaladaShinyList.length) {
 
-                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[2], 10)]);
+                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)]);
 
             } else {
 

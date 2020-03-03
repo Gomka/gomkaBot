@@ -26,4 +26,6 @@ if a message contains the word `siempre` the bot will say S I E M P R E
 
 `robalada num [int]`: Prints the nth robalada.
 	
-- if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database.
+- if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database. There is a 1/100 to get a shiny special robalada, stored in a different table in the database.
+
+All of the previous commands apply to the shiny robaladas with the syntax `robalada shiny [command]`
