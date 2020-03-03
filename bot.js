@@ -102,7 +102,7 @@ bot.on('message', async message => {
 
                 robaladaList.push(robaladaStr);
 
-                var sql = "INSERT INTO robaladas VALUES(default, "+robaladaStr+");"; //replace ["+robaladaStr+"] with [?]
+                var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
                 //var inserts = [robaladaStr];
                 //sql = mysql.format(sql, inserts);
 
