@@ -117,11 +117,11 @@ bot.on('message', async message => {
 
             robaladaAll(false);
 
-        } else if (messageLower.startsWith("robalada shiny num") && parseInt(messageStringsLower[3], 10) >= 0) {
+        } else if (messageLower.startsWith("robalada shiny num") && parseInt(messageStringsLower[3], 10) >= 0 && message.author.id == process.env.AUTHOR_ID) {
 
             robaladaNum(true);
 
-        } else if (messageLower.startsWith("robalada num") && parseInt(messageStringsLower[2], 10) >= 0 && message.author.id == process.env.AUTHOR_ID) {
+        } else if (messageLower.startsWith("robalada num") && parseInt(messageStringsLower[2], 10) >= 0) {
 
             robaladaNum(false);
 
