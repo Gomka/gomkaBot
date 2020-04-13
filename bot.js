@@ -53,7 +53,6 @@ bot.on('message', async message => {
     if (message.author.bot && config.ignoreBots) return;
 
     var messageLower = message.content.toLowerCase();
-
     var messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
     var messageStringsLower = messageLower.trim().split(/ +/g);
 
@@ -397,14 +396,14 @@ bot.on('message', async message => {
 
             var length = robaladaShinyList.length;
 
-            message.channel.send("En total hay " + length + " robaladas. La última (índice " + (length - 1) + ") es:");
+            message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
             message.channel.send(robaladaShinyList[length - 1]);
 
         } else {
 
             var length = robaladaList.length;
 
-            message.channel.send("En total hay " + length + " robaladas. La última (índice " + (length - 1) + ") es:");
+            message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
             message.channel.send(robaladaList[length - 1]);
 
         }
