@@ -88,7 +88,7 @@ bot.on('message', async message => {
 
     }
 
-    if (messageLower == "gomkaBot" || messageLower == "gomka bot") {
+    if (messageLower == "gomkabot" || messageLower == "gomka bot") {
 
         message.channel.send("E x p o s e d: https://github.com/Gomka/gomkaBot");
     }
