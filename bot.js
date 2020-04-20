@@ -78,19 +78,24 @@ bot.on('message', async message => {
 
     if (messageLower.includes("siempre")) {
 
-        message.channel.send("S I E M P R E")
+        message.channel.send("S I E M P R E");
 
     }
 
-    if (messageLower == "robalda") {
+    if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") {
 
-        message.channel.send("ximplet, ximplet...")
+        message.channel.send("ximplet, ximplet...");
 
+    }
+
+    if (messageLower == "gomkaBot" || messageLower == "gomka bot") {
+
+        message.channel.send("E x p o s e d: https://github.com/Gomka/gomkaBot");
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
 
-        shiny = (Math.floor(Math.random() * 100) == 0);
+        shiny = (Math.floor(Math.random() * 99) == 0);
 
         if (messageLower.startsWith("robalada shiny add ") && messageLower.length > 19) {
 
