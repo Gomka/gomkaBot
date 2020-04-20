@@ -95,7 +95,7 @@ bot.on('message', async message => {
 
     if (messageLower.includes("robalada") && !message.author.bot) {
 
-        shiny = (Math.floor(Math.random() * 99) == 0);
+        shiny = (Math.floor(Math.random() * 75) == 0);
 
         if (messageLower.startsWith("robalada shiny add ") && messageLower.length > 19) {
 
