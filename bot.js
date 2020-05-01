@@ -8,9 +8,6 @@ const mysql = require('mysql');
 
 const { Client } = require('pg');
 
-var robaladaList = [];
-var robaladaShinyList = [];
-
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
@@ -22,6 +19,7 @@ bot.on('ready', () => {
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
+    var robaladaList = [];
     client.connect();
     client.query('SELECT robalada FROM robaladas;', (err, res) => {
         if (err) throw err;
@@ -30,6 +28,8 @@ bot.on('ready', () => {
         }
     });
 
+    
+    var robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
