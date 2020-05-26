@@ -24,7 +24,7 @@ bot.on('ready', () => {
 
     robaladaList = [];
     client.connect();
-    client.query('SELECT robalada FROM robaladas;', (err, res) => {
+    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
@@ -33,7 +33,7 @@ bot.on('ready', () => {
 
     
     robaladaShinyList = [];
-    client.query('SELECT robalada FROM robaladasshiny;', (err, res) => {
+    client.query('SELECT robalada FROM robaladasshiny ORDER BY index;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaShinyList.push(row.robalada);
