@@ -22,9 +22,13 @@ bot.on('ready', () => {
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
+    // Retrieving the data from the database. In my particular case I have two tables: 
+    // robaladas:  index, robalada
+    // robaladasshiny: id, robalada
+
     robaladaList = [];
     client.connect();
-    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
+    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
@@ -33,7 +37,7 @@ bot.on('ready', () => {
 
     
     robaladaShinyList = [];
-    client.query('SELECT robalada FROM robaladasshiny ORDER BY index;', (err, res) => {
+    client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaShinyList.push(row.robalada);
