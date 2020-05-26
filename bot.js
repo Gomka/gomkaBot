@@ -159,7 +159,7 @@ bot.on('message', async message => {
 
                     //The commented code is string sanitization. For your database's sake, uncomment it
 
-                    //robaladaStr = robaladaStr.replace(/'/g, "");
+                    robaladaStr = robaladaStr.replace(/'/g, "");
                     //robaladaStr = robaladaStr.replace(/\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\r/g, ", ");
