@@ -429,7 +429,9 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index]);
+                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index], {
+                    tts: true
+                   });
 
             } else {
 
@@ -442,7 +444,9 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                message.channel.send("`" + index + ":` " + robaladaList[index]);
+                message.channel.send("`" + index + ":` " + robaladaList[index], {
+                    tts: true
+                   });
 
             } else {
 
