@@ -91,7 +91,7 @@ bot.on('message', async message => {
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") {
 
-        message.channel.send("ximplet, ximplet...");
+        message.channel.send("ximplet, ximplet...", {tts: true});
 
     }
 
@@ -429,9 +429,7 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index], {
-                    tts: true
-                   });
+                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index], {tts: true});
 
             } else {
 
@@ -444,9 +442,7 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                message.channel.send("`" + index + ":` " + robaladaList[index], {
-                    tts: true
-                   });
+                message.channel.send("`" + index + ":` " + robaladaList[index], {tts: true});
 
             } else {
 
