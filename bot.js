@@ -163,7 +163,7 @@ bot.on('message', async message => {
 
                     //The commented code is string sanitization. For your database's sake, uncomment it
 
-                    robaladaStr = robaladaStr.replace(/\'/g, "");
+                    robaladaStr = robaladaStr.replace("'", "");
                     //robaladaStr = robaladaStr.replace(/\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\r/g, ", ");
@@ -172,10 +172,10 @@ bot.on('message', async message => {
 
                     robaladaShinyList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladasshiny VALUES(default, ?);"; //replace ['"+robaladaStr+"'] with [?]
+                    var sql = "INSERT INTO robaladasshiny VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
 
-                    var inserts = [robaladaStr];
-                    sql = mysql.format(sql, inserts);
+                    //var inserts = [robaladaStr];
+                    //sql = mysql.format(sql, inserts);
 
                     client.query(sql, (err, res) => {
                         if (err) throw err;
@@ -208,7 +208,7 @@ bot.on('message', async message => {
 
                     //The commented code is string sanitization. For your database's sake, uncomment it
 
-                    robaladaStr = robaladaStr.replace(/\'/g, "");
+                    robaladaStr = robaladaStr.replace("'", "");
                     //robaladaStr = robaladaStr.replace(/\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
                     //robaladaStr = robaladaStr.replace(/\r/g, ", ");
@@ -217,10 +217,10 @@ bot.on('message', async message => {
 
                     robaladaList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladas VALUES(default, ?);"; //replace ['"+robaladaStr+"'] with [?]
+                    var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
 
-                    var inserts = [robaladaStr];
-                    sql = mysql.format(sql, inserts);
+                    //var inserts = [robaladaStr];
+                    //sql = mysql.format(sql, inserts);
 
                     client.query(sql, (err, res) => {
                         if (err) throw err;
