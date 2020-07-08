@@ -13,6 +13,7 @@ All variables from process.env are from heroku's config vars.
 `ping`: The bot will pong, measuring both the bot and api latency. The bot will also announce that your head itches from inside.
 
 if a message contains the word `siempre` the bot will say S I E M P R E
+if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵
 
 ### `robalada` family of commands: Consists on a postgresql based persistency storage of strings.
 

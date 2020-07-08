@@ -100,6 +100,11 @@ bot.on('message', async message => {
         message.channel.send("E x p o s e d: https://github.com/Gomka/gomkaBot");
     }
 
+    if (messageLower.includes("comid")) {
+        
+        message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
+    }
+
     if (messageLower.includes("robalada") && !message.author.bot) {
 
         shiny = (Math.floor(Math.random() * 75) == 0);
