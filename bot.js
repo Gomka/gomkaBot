@@ -89,7 +89,7 @@ bot.on('message', async message => {
 
     }
 
-    if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") {
+    if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
 
         message.channel.send("ximplet, ximplet...", {tts: true});
 
@@ -106,8 +106,6 @@ bot.on('message', async message => {
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
-
-        shiny = (Math.floor(Math.random() * 75) == 0);
 
         if (messageLower.startsWith("robalada shiny add ") && messageLower.length > 19) {
 
@@ -149,9 +147,23 @@ bot.on('message', async message => {
 
             robaladaLast(false);
 
-        } else {
+        } else if (messageStringsLower[1] === "bomb") {
 
-            robaladaRandom(shiny);
+            var robaladaBomb ;
+            randomTTs = Math.random() >= 0.95;
+
+            for (let index = 0; index < 5; index++) {
+                shiny = (Math.floor(Math.random() * 75) == 0);
+                robaladaBomb += robaladaRandom(shiny) + "\n";                
+            }
+
+            message.channel.send(robaladaBomb, {tts: randomTTs});
+
+        }else {
+
+            shiny = (Math.floor(Math.random() * 75) == 0);
+            randomTTs = Math.random() >= 0.95;
+            message.channel.send(robaladaRandom(shiny), {tts: randomTTs});
 
         }
     }
@@ -428,7 +440,7 @@ bot.on('message', async message => {
 
     function robaladaRandom(Shiny) {
 
-        randomTTs = Math.random() >= 0.95;
+
 
         if (Shiny) {
 
@@ -436,11 +448,11 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                message.channel.send("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index], {tts: randomTTs});
+                return("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index]);
 
             } else {
 
-                message.channel.send("No robaladas SHINY to deliver (yet)");
+                return("No robaladas SHINY to deliver (yet)");
             }
             
         } else {
@@ -449,11 +461,11 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                message.channel.send("`" + index + ":` " + robaladaList[index], {tts: randomTTs});
+                return("`" + index + ":` " + robaladaList[index]);
 
             } else {
 
-                message.channel.send("No robaladas to deliver (yet)");
+                return("No robaladas to deliver (yet)");
             }
         }
     }

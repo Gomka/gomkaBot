@@ -26,6 +26,8 @@ if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 �
 `robalada last`: Indicates the total ammount of robaladas and prints the last one added.
 
 `robalada num [int]`: Prints the nth robalada.
+
+`robalada bomb`: Dumps 5 robaladas in a row. (only one message to prevent spam)
 	
 - if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database. There is a 1/100 to get a shiny special robalada, stored in a different table in the database.
 
