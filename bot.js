@@ -149,20 +149,34 @@ bot.on('message', async message => {
 
         } else if (messageStringsLower[1] === "bomb") {
 
-            var robaladaBomb ;
+            var robaladaBomb = "";
+            var robaladaBomb2 = "";
+            var robaladaAux = "";
+
             randomTTs = Math.random() >= 0.95;
 
-            for (let index = 0; index < 5; index++) {
+            for (let index = 0; index < 4; index++) {
+
                 shiny = (Math.floor(Math.random() * 75) == 0);
-                robaladaBomb += robaladaRandom(shiny) + "\n";                
+                robaladaAux = robaladaRandom(shiny);
+
+                if((robaladaBomb + robaladaAux + "\n").length < 2000) {
+                    robaladaBomb += robaladaAux + "\n";  
+
+                } else
+                    robaladaBomb2 += robaladaAux + "\n";              
             }
 
             message.channel.send(robaladaBomb, {tts: randomTTs});
+
+            if(robaladaBomb2.length>0)
+            message.channel.send(robaladaBomb2, {tts: randomTTs});
 
         }else {
 
             shiny = (Math.floor(Math.random() * 75) == 0);
             randomTTs = Math.random() >= 0.95;
+            
             message.channel.send(robaladaRandom(shiny), {tts: randomTTs});
 
         }
