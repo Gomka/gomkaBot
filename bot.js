@@ -4,17 +4,17 @@ const bot = new Discord.Client();
 
 const config = require("./config.json");
 
-// const mysql = require('mysql'); // potentially used for string sanitization
+const mysql = require('mysql');
+
+const { Client } = require('pg');
 
 var robaladaShinyList = [];
 var robaladaList = [];
 
-const { Client } = require('pg');
-
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
-});  
+});
 
 bot.on('ready', () => {
 
@@ -26,14 +26,15 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
-    client.connect();
     robaladaList = [];
+    client.connect();
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
         }
     });
+
     
     robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
@@ -54,13 +55,6 @@ bot.on("guildDelete", guild => {
     console.log('left guild');
 });
 
-bot.on("error", error => {
-    // notify bot author when errors occur
-    bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
-        user.send(error);
-       });
-});
-
 bot.on('message', async message => {
 
     if (message.author.bot && config.ignoreBots) return;
@@ -78,12 +72,9 @@ bot.on('message', async message => {
 
     /*if (messageStringsLower[0] === '¡ignorebot') {
         if(messageStringsLower[1] === "true") {
-
             config.ignoreBots = true;
             message.channel.send("Ignore bots set to `true`");
-
         } else if(messageStringsLower[1] === "false"){
-
             config.ignoreBots = false;
             message.channel.send("Ignore bots set to `false`");
         }
@@ -111,9 +102,11 @@ bot.on('message', async message => {
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
     }
 
-    if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
-
-        restart();
+    if (messageLower == "gomkaBot restart" && message.author.id == process.env.AUTHOR_ID) {
+        
+        message.channel.send("A wueno adios master 😩");
+        bot.destroy();
+        bot.login(process.env.BOT_TOKEN);
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
@@ -218,7 +211,7 @@ bot.on('message', async message => {
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
-                    
+
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
@@ -229,7 +222,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    restart();
+                    message.channel.send("Algo se ha crujio oh fuc");
                     console.error(error);
                 }
 
@@ -263,10 +256,10 @@ bot.on('message', async message => {
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
+
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
-
 
                     var length = robaladaList.length - 1;
 
@@ -274,7 +267,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    restart();
+                    message.channel.send("Algo se ha crujio oh fuc");
                     console.error(error);
                 }
 
@@ -313,7 +306,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    restart();
+                    message.channel.send("Algo se ha crujio :/");
                     console.error(error);
                 }
 
@@ -332,7 +325,7 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
-                        client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
+                        client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
                             if (err) throw err;
                         });
 
@@ -346,7 +339,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    restart();
+                    message.channel.send("Algo se ha crujio :/");
                     console.error(error);
                 }
 
@@ -465,8 +458,6 @@ bot.on('message', async message => {
 
     function robaladaRandom(Shiny) {
 
-
-
         if (Shiny) {
 
             if (robaladaShinyList && robaladaShinyList.length > 0) {
@@ -493,15 +484,6 @@ bot.on('message', async message => {
                 return("No robaladas to deliver (yet)");
             }
         }
-    }
-
-    function restart() {
-
-        console.log('restarting');
-
-        message.channel.send("A wueno adios master 😩")
-        .then(msg => bot.destroy())
-        .then(() => bot.login(process.env.BOT_TOKEN));
     }
     
     if (messageStringsLower[0] === "roll") {
