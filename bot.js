@@ -10,6 +10,7 @@ const { Client } = require('pg');
 
 var robaladaShinyList = [];
 var robaladaList = [];
+var isConnected = false;
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
@@ -26,8 +27,12 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
+    if(!isConnected) {
+        client.connect();
+        isConnected = true;
+    }
+
     robaladaList = [];
-    client.connect();
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
         for (let row of res.rows) {
@@ -111,9 +116,7 @@ bot.on('message', async message => {
 
     if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
         
-        message.channel.send("A wueno adios master 😩");
-        bot.destroy();
-        bot.login(process.env.BOT_TOKEN);
+        restart();
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
@@ -229,8 +232,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio oh fuc");
-                    console.error(error);
+                    restart(error);
                 }
 
             } else {
@@ -274,8 +276,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio oh fuc");
-                    console.error(error);
+                    restart(error);
                 }
 
             } else {
@@ -313,8 +314,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio :/");
-                    console.error(error);
+                    restart(error);
                 }
 
             } else {
@@ -346,8 +346,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio :/");
-                    console.error(error);
+                    restart(error);
                 }
 
             } else {
@@ -493,6 +492,19 @@ bot.on('message', async message => {
         }
     }
     
+    function restart(error) {
+
+        if(error) {
+            bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+                user.send(error);
+            });
+        }
+
+        message.channel.send("A wueno adios master 😩");
+        bot.destroy();
+        bot.login(process.env.BOT_TOKEN);
+    }
+
     if (messageStringsLower[0] === "roll") {
 
         var dubs = message.id;
