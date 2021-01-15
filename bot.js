@@ -6,7 +6,7 @@ const config = require("./config.json");
 
 const mysql = require('mysql');
 
-const { Client } = require('pg');
+var { Client } = require('pg');
 
 var robaladaShinyList = [];
 var robaladaList = [];
@@ -497,6 +497,8 @@ bot.on('message', async message => {
     }
 
     function restart() {
+
+        console.log('restarting');
 
         message.channel.send("A wueno adios master 😩")
         .then(msg => bot.destroy())
