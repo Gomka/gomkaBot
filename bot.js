@@ -492,6 +492,7 @@ bot.on('message', async message => {
     function restart() {
         message.channel.send("A wueno adios master 😩");
         bot.destroy();
+        bot = new Discord.Client();
         bot.login(process.env.BOT_TOKEN);
     }
     
