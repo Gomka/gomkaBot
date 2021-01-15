@@ -11,7 +11,7 @@ var { Client } = require('pg');
 var robaladaShinyList = [];
 var robaladaList = [];
 
-const client = new Client({
+var client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
 });
