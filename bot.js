@@ -12,11 +12,11 @@ var robaladaList = [];
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-  connectionString: process.env.DATABASE_URL, //Database connection
-  ssl: true,
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+    connectionString: process.env.DATABASE_URL, //Database connection
+    ssl: true,
 });
 
 bot.on('ready', () => {
@@ -48,6 +48,7 @@ bot.on('ready', () => {
                 robaladaShinyList.push(row.robalada);
             }
         });
+        release();
     });
 });
 
@@ -233,6 +234,7 @@ bot.on('message', async message => {
                         client.query(sql, (err, res) => {
                             if (err) throw err;
                         });
+                        release();
                     });
 
                     var length = robaladaShinyList.length - 1;
@@ -282,6 +284,7 @@ bot.on('message', async message => {
                         client.query(sql, (err, res) => {
                             if (err) throw err;
                         });
+                        release();
                     });
 
 
@@ -323,6 +326,7 @@ bot.on('message', async message => {
                             client.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
                                 if (err) throw err;
                             });
+                            release();
                         });
 
 
@@ -362,6 +366,7 @@ bot.on('message', async message => {
                             client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
                                 if (err) throw err;
                             });
+                            release();
                         });
 
 
