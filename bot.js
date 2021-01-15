@@ -62,7 +62,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("error", error => {
     // notify bot author when errors occur
-    bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+    client.users.fetch(process.env.AUTHOR_ID).then((user) => {
         user.send(error);
     });
 });
@@ -494,8 +494,10 @@ bot.on('message', async message => {
     
     function restart(error) {
 
+        console.log('restarting');
+
         if(error) {
-            bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+            client.users.fetch(process.env.AUTHOR_ID).then((user) => {
                 user.send(error);
             });
         }
