@@ -498,10 +498,9 @@ bot.on('message', async message => {
 
     function restart() {
 
-        message.channel.send("A wueno adios master 😩");
-        bot.destroy();
-        //bot = new Discord.Client();
-        new Discord.Client().login(process.env.BOT_TOKEN);
+        message.channel.send("A wueno adios master 😩")
+        .then(msg => bot.destroy())
+        .then(() => bot.login(process.env.BOT_TOKEN));
     }
     
     if (messageStringsLower[0] === "roll") {
