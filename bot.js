@@ -123,12 +123,6 @@ bot.on('message', async message => {
         restart();
     }
 
-    if (messageLower == "ñengosis3") {
-        bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
-            user.send("ñengul");
-           });
-    }
-
     if (messageLower.includes("robalada") && !message.author.bot) {
 
         if (messageLower.startsWith("robalada shiny add ") && messageLower.length > 19) {
