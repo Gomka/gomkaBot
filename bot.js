@@ -55,6 +55,13 @@ bot.on("guildDelete", guild => {
     console.log('left guild');
 });
 
+bot.on("error", error => {
+    // notify bot author when errors occur
+    bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+        user.send(error);
+       });
+});
+
 bot.on('message', async message => {
 
     if (message.author.bot && config.ignoreBots) return;
@@ -490,11 +497,11 @@ bot.on('message', async message => {
     }
 
     function restart() {
-        
+
         message.channel.send("A wueno adios master 😩");
         bot.destroy();
         //bot = new Discord.Client();
-        bot.login(process.env.BOT_TOKEN);
+        new Discord.Client().login(process.env.BOT_TOKEN);
     }
     
     if (messageStringsLower[0] === "roll") {
