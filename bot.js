@@ -12,7 +12,7 @@ var robaladaList = [];
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    max: 20,
+    max: 1,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
     connectionString: process.env.DATABASE_URL, //Database connection
