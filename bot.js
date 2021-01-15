@@ -55,6 +55,13 @@ bot.on("guildDelete", guild => {
     console.log('left guild');
 });
 
+bot.on("error", error => {
+    // notify bot author when errors occur
+    bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+        user.send(error);
+    });
+});
+
 bot.on('message', async message => {
 
     if (message.author.bot && config.ignoreBots) return;
@@ -102,7 +109,7 @@ bot.on('message', async message => {
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
     }
 
-    if (messageLower == "gomkaBot restart" && message.author.id == process.env.AUTHOR_ID) {
+    if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
         
         message.channel.send("A wueno adios master 😩");
         bot.destroy();
