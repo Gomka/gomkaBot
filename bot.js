@@ -105,11 +105,9 @@ bot.on('message', async message => {
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
     }
 
-    if (messageLower == "gomkaBot restart" && message.author.id == process.env.AUTHOR_ID) {
-        
-        message.channel.send("A wueno adios master 😩");
-        bot.destroy();
-        bot.login(process.env.BOT_TOKEN);
+    if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
+
+        restart();
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
@@ -225,7 +223,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio oh fuc");
+                    restart();
                     console.error(error);
                 }
 
@@ -270,7 +268,7 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio oh fuc");
+                    restart();
                     console.error(error);
                 }
 
@@ -309,7 +307,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio :/");
+                    restart();
                     console.error(error);
                 }
 
@@ -342,7 +340,7 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    message.channel.send("Algo se ha crujio :/");
+                    restart();
                     console.error(error);
                 }
 
@@ -489,6 +487,12 @@ bot.on('message', async message => {
                 return("No robaladas to deliver (yet)");
             }
         }
+    }
+
+    function restart() {
+        message.channel.send("A wueno adios master 😩");
+        bot.destroy();
+        bot.login(process.env.BOT_TOKEN);
     }
     
     if (messageStringsLower[0] === "roll") {
