@@ -12,7 +12,7 @@ var robaladaList = [];
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    max: 1,
+    max: 5,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
     connectionString: process.env.DATABASE_URL, //Database connection
@@ -226,16 +226,8 @@ bot.on('message', async message => {
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
-
-                    pool.connect((err, client, release) => {
-                        if (err) {
-                          return console.error('Error acquiring client', err.stack)
-                        };
-                        client.query(sql, (err, res) => {
-                            if (err) throw err;
-                        });
-                        release();
-                    });
+                    
+                    pool.query(sql).catch(err => console.error('Error executing query', err.stack));
 
                     var length = robaladaShinyList.length - 1;
 
@@ -277,16 +269,7 @@ bot.on('message', async message => {
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
-                    pool.connect((err, client, release) => {
-                        if (err) {
-                          return console.error('Error acquiring client', err.stack)
-                        };
-                        client.query(sql, (err, res) => {
-                            if (err) throw err;
-                        });
-                        release();
-                    });
-
+                    pool.query(sql).catch(err => console.error('Error executing query', err.stack));
 
                     var length = robaladaList.length - 1;
 
@@ -319,16 +302,8 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaShinyList.length) {
 
-                        pool.connect((err, client, release) => {
-                            if (err) {
-                              return console.error('Error acquiring client', err.stack)
-                            }
-                            client.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
-                                if (err) throw err;
-                            });
-                            release();
-                        });
-
+                        pool.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';")
+                        .catch(err => console.error('Error executing query', err.stack));
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
@@ -359,16 +334,8 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
-                        pool.connect((err, client, release) => {
-                            if (err) {
-                              return console.error('Error acquiring client', err.stack)
-                            }
-                            client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
-                                if (err) throw err;
-                            });
-                            release();
-                        });
-
+                        pool.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';")
+                        .catch(err => console.error('Error executing query', err.stack));
 
                         robaladaList.splice(posicionABorrar, 1);
 
