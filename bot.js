@@ -23,7 +23,7 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     // Retrieving the data from the database. In my particular case I have two tables: 
-    // robaladas:  index, robalada
+    // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
     robaladaList = [];
@@ -103,6 +103,13 @@ bot.on('message', async message => {
     if (messageLower.includes("comid")) {
         
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
+    }
+
+    if (messageLower == "gomkaBot restart" && message.author.id == process.env.AUTHOR_ID) {
+        
+        message.channel.send("A wueno adios master 😩");
+        bot.destroy();
+        bot.login(process.env.BOT_TOKEN);
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
