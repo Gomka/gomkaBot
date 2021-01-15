@@ -9,15 +9,6 @@ const config = require("./config.json");
 var robaladaShinyList = [];
 var robaladaList = [];
 
-/*
-var { Client } = require('pg');
-
-var client = new Client({
-    connectionString: process.env.DATABASE_URL, //Database connection
-    ssl: true,
-});  
-*/
-
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -130,6 +121,12 @@ bot.on('message', async message => {
     if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
 
         restart();
+    }
+
+    if (messageLower == "ñengosis3") {
+        bot.fetchUser(process.env.AUTHOR_ID, false).then((user) => {
+            user.send("ñengul");
+           });
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
