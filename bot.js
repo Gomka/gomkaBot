@@ -37,7 +37,9 @@ bot.on('ready', () => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
+            console.log(row.robalada + " - epa");
         }
+        console.log("Fetched robaladas");
     });
 
 
