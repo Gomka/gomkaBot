@@ -32,6 +32,12 @@ bot.on('ready', () => {
         isConnected = true;
     }
 
+    
+    client.query('Select MAX(index) FROM robaladas;', (err, res) => { 
+        if (err) throw err;
+        console.log(res);
+    });
+
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
