@@ -21,8 +21,6 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    console.log(client);
-
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     // Retrieving the data from the database. In my particular case I have two tables: 
@@ -53,7 +51,7 @@ bot.on('ready', () => {
         }
     });
 
-    console.log(isConnected);
+    console.log(robaladaList);
 });
 
 bot.on("guildCreate", guild => {
