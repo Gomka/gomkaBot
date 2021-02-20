@@ -51,7 +51,7 @@ bot.on('ready', () => {
         }
     });
 
-    console.log("Test");
+    console.log(isConnected);
 });
 
 bot.on("guildCreate", guild => {
