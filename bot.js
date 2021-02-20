@@ -21,6 +21,8 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
+    console.log(isConnected);
+
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     // Retrieving the data from the database. In my particular case I have two tables: 
@@ -34,6 +36,7 @@ bot.on('ready', () => {
 
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
+        console.log("Attempting to fetch robaladas");
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
