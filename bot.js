@@ -35,9 +35,11 @@ bot.on('ready', () => {
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
+        console.log(res);
+        /*
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
-        }
+        } */
     });
 
     
