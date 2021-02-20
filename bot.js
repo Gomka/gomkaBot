@@ -171,7 +171,7 @@ bot.on('message', async message => {
 
             for (let index = 0; index < 4; index++) {
 
-                shiny = Math.random() >= 0.98;
+                shiny = (Math.floor(Math.random() * 75) == 0);
                 robaladaAux = robaladaRandom(shiny);
 
                 if ((robaladaBomb + robaladaAux + "\n").length < 2000) {
@@ -188,8 +188,8 @@ bot.on('message', async message => {
 
         } else {
 
-            shiny = Math.random() >= 0.98; // 2% de robalada shiny
-            randomTTs = Math.random() >= 0.95; // 5% de tts
+            shiny = (Math.floor(Math.random() * 75) == 0);
+            randomTTs = Math.random() >= 0.95;
 
             message.channel.send(robaladaRandom(shiny), { tts: randomTTs });
 
