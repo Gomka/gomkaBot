@@ -30,24 +30,26 @@ bot.on('ready', () => {
     if(!isConnected) {
         client.connect();
         isConnected = true;
-    }
-
-    
-    client.query('Select MAX(index) FROM robaladas;', (err, res) => { 
-        if (err) throw err;
-        console.log(res);
-    });
+    };
 
     robaladaList = [];
-    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
-        if (err) throw err;
+    client
+    .query('SELECT robalada FROM robaladas ORDER BY index;')
+    .then(res => {
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
             console.log(row.robalada + " - epa");
         }
-        console.log("Fetched robaladas");
-    });
+    })
+    .catch(e => console.error(e.stack))
 
+    /*
+    robaladaList = [];
+    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
+        if (err) throw err;
+        
+        console.log("Fetched robaladas");
+    }); 
     
     robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
@@ -56,6 +58,8 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
+
+    */
 
     console.log(robaladaList);
 });
