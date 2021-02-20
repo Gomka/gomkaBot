@@ -29,14 +29,13 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
-    if (!isConnected) {
+    if(!isConnected) {
         client.connect();
         isConnected = true;
     }
 
     robaladaList = [];
-    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
-        console.log("Attempting to fetch robaladas");
+    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
@@ -45,7 +44,7 @@ bot.on('ready', () => {
         console.log("Fetched robaladas");
     });
 
-
+    
     robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
         if (err) throw err;
@@ -107,7 +106,7 @@ bot.on('message', async message => {
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
 
-        message.channel.send("ximplet, ximplet...", { tts: true });
+        message.channel.send("ximplet, ximplet...", {tts: true});
 
     }
 
@@ -117,12 +116,12 @@ bot.on('message', async message => {
     }
 
     if (messageLower.includes("comid")) {
-
+        
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
     }
 
     if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
-
+        
         restart();
     }
 
@@ -168,7 +167,7 @@ bot.on('message', async message => {
 
             robaladaLast(false);
 
-        } else if (messageStringsLower[0] === "robalada" && messageStringsLower[1] === "bomb") {
+        } else if (messageStringsLower[1] === "bomb") {
 
             var robaladaBomb = "";
             var robaladaBomb2 = "";
@@ -181,24 +180,24 @@ bot.on('message', async message => {
                 shiny = (Math.floor(Math.random() * 75) == 0);
                 robaladaAux = robaladaRandom(shiny);
 
-                if ((robaladaBomb + robaladaAux + "\n").length < 2000) {
-                    robaladaBomb += robaladaAux + "\n";
+                if((robaladaBomb + robaladaAux + "\n").length < 2000) {
+                    robaladaBomb += robaladaAux + "\n";  
 
                 } else
-                    robaladaBomb2 += robaladaAux + "\n";
+                    robaladaBomb2 += robaladaAux + "\n";              
             }
 
-            message.channel.send(robaladaBomb, { tts: randomTTs });
+            message.channel.send(robaladaBomb, {tts: randomTTs});
 
-            if (robaladaBomb2.length > 0)
-                message.channel.send(robaladaBomb2, { tts: randomTTs });
+            if(robaladaBomb2.length>0)
+            message.channel.send(robaladaBomb2, {tts: randomTTs});
 
-        } else {
+        }else {
 
             shiny = (Math.floor(Math.random() * 75) == 0);
             randomTTs = Math.random() >= 0.95;
-
-            message.channel.send(robaladaRandom(shiny), { tts: randomTTs });
+            
+            message.channel.send(robaladaRandom(shiny), {tts: randomTTs});
 
         }
     }
@@ -224,7 +223,7 @@ bot.on('message', async message => {
 
                     robaladaShinyList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladasshiny VALUES(default, '" + robaladaStr + "');"; //replace ['"+robaladaStr+"'] with [?]
+                    var sql = "INSERT INTO robaladasshiny VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
@@ -268,7 +267,7 @@ bot.on('message', async message => {
 
                     robaladaList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladas VALUES(default, '" + robaladaStr + "');"; //replace ['"+robaladaStr+"'] with [?]
+                    var sql = "INSERT INTO robaladas VALUES(default, '"+robaladaStr+"');"; //replace ['"+robaladaStr+"'] with [?]
 
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
@@ -477,33 +476,33 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                return ("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index]);
+                return("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index]);
 
             } else {
 
-                return ("No robaladas SHINY to deliver (yet)");
+                return("No robaladas SHINY to deliver (yet)");
             }
-
+            
         } else {
 
             if (robaladaList && robaladaList.length > 0) {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                return ("`" + index + ":` " + robaladaList[index]);
+                return("`" + index + ":` " + robaladaList[index]);
 
             } else {
 
-                return ("No robaladas to deliver (yet)");
+                return("No robaladas to deliver (yet)");
             }
         }
     }
-
+    
     function restart(error) {
 
         console.log('restarting');
 
-        if (error) {
+        if(error) {
             client.users.fetch(process.env.AUTHOR_ID).then((user) => {
                 user.send(error);
             });
