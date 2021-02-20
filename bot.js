@@ -34,7 +34,7 @@ bot.on('ready', () => {
 
     robaladaList = [];
     client
-    .query('SELECT robalada FROM robaladas ORDER BY index;')
+    .query('SELECT robalada FROM robaladas ORDER BY index')
     .then(res => {
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
