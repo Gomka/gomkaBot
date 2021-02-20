@@ -21,7 +21,7 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    console.log(isConnected);
+    console.log(client);
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
