@@ -30,26 +30,16 @@ bot.on('ready', () => {
     if(!isConnected) {
         client.connect();
         isConnected = true;
-    };
+    }
 
-    robaladaList = [];
-    client
-    .query('SELECT robalada FROM robaladas ORDER BY index')
-    .then(res => {
-        for (let row of res.rows) {
-            robaladaList.push(row.robalada);
-            console.log(row.robalada + " - epa");
-        }
-    })
-    .catch(e => console.error(e.stack))
-
-    /*
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
-        
-        console.log("Fetched robaladas");
-    }); 
+        for (let row of res.rows) {
+            robaladaList.push(row.robalada);
+        }
+    });
+
     
     robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
@@ -58,10 +48,6 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
-
-    */
-
-    console.log(robaladaList);
 });
 
 bot.on("guildCreate", guild => {
