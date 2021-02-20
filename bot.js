@@ -50,6 +50,8 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
+
+    console.log("Test");
 });
 
 bot.on("guildCreate", guild => {
