@@ -6,13 +6,13 @@ const config = require("./config.json");
 
 const mysql = require('mysql');
 
-const { Client } = require('pg');
+const { Pool, Client } = require('pg');
 
 var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
-const client = new Client({
+const pool = new Pool({
     user: process.env.DATABASE_USER,
     host: process.env.DATABASE_HOST,
     database: process.env.DATABASE_DB,
@@ -31,13 +31,15 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
+    /*
     if(!isConnected) {
         client.connect();
         isConnected = true;
     }
+    */
 
     robaladaList = [];
-    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
+    pool.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
         console.log(res);
         for (let row of res.rows) {
@@ -47,7 +49,7 @@ bot.on('ready', () => {
 
     
     robaladaShinyList = [];
-    client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
+    pool.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaShinyList.push(row.robalada);
@@ -55,6 +57,8 @@ bot.on('ready', () => {
     });
 
     console.log(robaladaList);
+
+    console.log(pool);
 });
 
 bot.on("guildCreate", guild => {
