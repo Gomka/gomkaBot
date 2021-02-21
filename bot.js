@@ -14,7 +14,6 @@ var isConnected = false;
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
-    ssl: true,
 });
 
 bot.on('ready', () => {
