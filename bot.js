@@ -13,7 +13,16 @@ var robaladaList = [];
 var isConnected = false;
 
 const client = new Client({
-    connectionString: process.env.DATABASE_URL, //Database connection
+     //Database connection
+});
+
+const client = new Client({
+    user: process.env.DATABASE_USER,
+    host: process.env.DATABASE_HOST,
+    database: process.env.DATABASE_DB,
+    password: process.env.DATABASE_PASSWORD,
+    port: process.env.DATABASE_PORT,
+    connectionString: process.env.DATABASE_URL,
 });
 
 bot.on('ready', () => {
@@ -48,6 +57,8 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
+
+    console.log(robaladaList);
 });
 
 bot.on("guildCreate", guild => {
