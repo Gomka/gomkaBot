@@ -33,6 +33,7 @@ bot.on('ready', () => {
     };
 
     try {
+        console.log("attempting query");
         client
         .query('SELECT robalada FROM robaladas ORDER BY index;')
         .then(res => console.log(res))
