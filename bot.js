@@ -13,10 +13,6 @@ var robaladaList = [];
 var isConnected = false;
 
 const client = new Client({
-     //Database connection
-});
-
-const client = new Client({
     user: process.env.DATABASE_USER,
     host: process.env.DATABASE_HOST,
     database: process.env.DATABASE_DB,
