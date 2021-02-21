@@ -30,7 +30,16 @@ bot.on('ready', () => {
     if (!isConnected) {
         client.connect();
         isConnected = true;
-    }
+    };
+
+    try {
+        client
+        .query('SELECT robalada FROM robaladas ORDER BY index;')
+        .then(res => console.log(res))
+        .catch(e => console.error(e.stack))
+    } catch (error) {
+        console.log(error);
+    };
 
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
