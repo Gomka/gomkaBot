@@ -2,6 +2,10 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
+const config = require("./config.json");
+
+const mysql = require('mysql');
+
 const { Client } = require('pg');
 
 var robaladaShinyList = [];
@@ -65,7 +69,7 @@ bot.on("error", error => {
 
 bot.on('message', async message => {
 
-    if (message.author.bot) return;
+    if (message.author.bot && config.ignoreBots) return;
 
     var messageLower = message.content.toLowerCase();
     var messageStrings = message.content.trim().split(/ +/g); // array of strings of all the words in the message
@@ -77,6 +81,16 @@ bot.on('message', async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
+
+    /*if (messageStringsLower[0] === '¡ignorebot') {
+        if(messageStringsLower[1] === "true") {
+            config.ignoreBots = true;
+            message.channel.send("Ignore bots set to `true`");
+        } else if(messageStringsLower[1] === "false"){
+            config.ignoreBots = false;
+            message.channel.send("Ignore bots set to `false`");
+        }
+    }*/
 
     if (messageLower.includes("siempre")) {
 
@@ -192,11 +206,21 @@ bot.on('message', async message => {
 
                     var robaladaStr = message.content.substr(19);
 
+                    //The commented code is string sanitization. For your database's sake, uncomment it
+
                     robaladaStr = robaladaStr.replace("'", "");
+                    //robaladaStr = robaladaStr.replace(/\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\r/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\\"/g, "*");
 
                     robaladaShinyList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladasshiny VALUES(default, '" + robaladaStr + "');"; 
+                    var sql = "INSERT INTO robaladasshiny VALUES(default, '" + robaladaStr + "');"; //replace ['"+robaladaStr+"'] with [?]
+
+                    //var inserts = [robaladaStr];
+                    //sql = mysql.format(sql, inserts);
 
                     client.query(sql, (err, res) => {
                         if (err) throw err;
@@ -226,11 +250,21 @@ bot.on('message', async message => {
 
                     var robaladaStr = message.content.substr(13);
 
+                    //The commented code is string sanitization. For your database's sake, uncomment it
+
                     robaladaStr = robaladaStr.replace("'", "");
+                    //robaladaStr = robaladaStr.replace(/\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\r/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\r\n/g, ", ");
+                    //robaladaStr = robaladaStr.replace(/\\"/g, "*");
 
                     robaladaList.push(robaladaStr);
 
-                    var sql = "INSERT INTO robaladas VALUES(default, '" + robaladaStr + "');"; 
+                    var sql = "INSERT INTO robaladas VALUES(default, '" + robaladaStr + "');"; //replace ['"+robaladaStr+"'] with [?]
+
+                    //var inserts = [robaladaStr];
+                    //sql = mysql.format(sql, inserts);
 
                     client.query(sql, (err, res) => {
                         if (err) throw err;
