@@ -15,8 +15,6 @@ All variables from process.env are from heroku's config vars.
 if a message contains the word `siempre` the bot will say S I E M P R E
 if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵
 
-`gomkabot restart`: Restarts the bot. (this command can only be issued by the bot owner).
-
 ### `robalada` family of commands: Consists on a postgresql based persistency storage of strings.
 
 `robalada add [string]`: If that message was sent by the author of the bot, the string in [] is added to the database, and the bot will announce the index of the robalada added.
@@ -33,4 +31,4 @@ if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 �
 	
 - if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database. There is a 1/100 to get a shiny special robalada, stored in a different table in the database.
 
-All of the previous commands apply to the shiny robaladas with the syntax `robalada shiny [command]` (Only the bot owner can issue the shiny versions).
+All of the previous commands apply to the shiny robaladas with the syntax `robalada shiny [command]`

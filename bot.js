@@ -6,19 +6,14 @@ const config = require("./config.json");
 
 const mysql = require('mysql');
 
-const { Pool, Client } = require('pg');
+const { Client } = require('pg');
 
 var robaladaShinyList = [];
 var robaladaList = [];
-var isConnected = false;
 
-const pool = new Pool({
-    user: process.env.DATABASE_USER,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_DB,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT,
-    connectionString: process.env.DATABASE_URL,
+const client = new Client({
+    connectionString: process.env.DATABASE_URL, //Database connection
+    ssl: true,
 });
 
 bot.on('ready', () => {
@@ -28,20 +23,13 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     // Retrieving the data from the database. In my particular case I have two tables: 
-    // robaladas: index, robalada
+    // robaladas:  index, robalada
     // robaladasshiny: id, robalada
 
-    /*
-    if(!isConnected) {
-        client.connect();
-        isConnected = true;
-    }
-    */
-
     robaladaList = [];
-    pool.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
+    client.connect();
+    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => { 
         if (err) throw err;
-        console.log(res);
         for (let row of res.rows) {
             robaladaList.push(row.robalada);
         }
@@ -49,16 +37,12 @@ bot.on('ready', () => {
 
     
     robaladaShinyList = [];
-    pool.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
+    client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
             robaladaShinyList.push(row.robalada);
         }
     });
-
-    console.log(robaladaList);
-
-    console.log(pool);
 });
 
 bot.on("guildCreate", guild => {
@@ -69,13 +53,6 @@ bot.on("guildCreate", guild => {
 bot.on("guildDelete", guild => {
     // this event triggers when the bot is removed from a guild.
     console.log('left guild');
-});
-
-bot.on("error", error => {
-    // notify bot author when errors occur
-    client.users.fetch(process.env.AUTHOR_ID).then((user) => {
-        user.send(error);
-    });
 });
 
 bot.on('message', async message => {
@@ -95,9 +72,12 @@ bot.on('message', async message => {
 
     /*if (messageStringsLower[0] === '¡ignorebot') {
         if(messageStringsLower[1] === "true") {
+
             config.ignoreBots = true;
             message.channel.send("Ignore bots set to `true`");
+
         } else if(messageStringsLower[1] === "false"){
+
             config.ignoreBots = false;
             message.channel.send("Ignore bots set to `false`");
         }
@@ -123,11 +103,6 @@ bot.on('message', async message => {
     if (messageLower.includes("comid")) {
         
         message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
-    }
-
-    if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
-        
-        restart();
     }
 
     if (messageLower.includes("robalada") && !message.author.bot) {
@@ -243,7 +218,8 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    restart(error);
+                    message.channel.send("Algo se ha crujio oh fuc");
+                    console.error(error);
                 }
 
             } else {
@@ -287,7 +263,8 @@ bot.on('message', async message => {
 
                 }
                 catch (error) {
-                    restart(error);
+                    message.channel.send("Algo se ha crujio oh fuc");
+                    console.error(error);
                 }
 
             } else {
@@ -325,7 +302,8 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    restart(error);
+                    message.channel.send("Algo se ha crujio :/");
+                    console.error(error);
                 }
 
             } else {
@@ -357,7 +335,8 @@ bot.on('message', async message => {
                     }
                 }
                 catch (error) {
-                    restart(error);
+                    message.channel.send("Algo se ha crujio :/");
+                    console.error(error);
                 }
 
             } else {
@@ -475,6 +454,8 @@ bot.on('message', async message => {
 
     function robaladaRandom(Shiny) {
 
+
+
         if (Shiny) {
 
             if (robaladaShinyList && robaladaShinyList.length > 0) {
@@ -503,21 +484,6 @@ bot.on('message', async message => {
         }
     }
     
-    function restart(error) {
-
-        console.log('restarting');
-
-        if(error) {
-            client.users.fetch(process.env.AUTHOR_ID).then((user) => {
-                user.send(error);
-            });
-        }
-
-        message.channel.send("A wueno adios master 😩");
-        bot.destroy();
-        bot.login(process.env.BOT_TOKEN);
-    }
-
     if (messageStringsLower[0] === "roll") {
 
         var dubs = message.id;
