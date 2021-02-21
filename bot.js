@@ -27,10 +27,12 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
+    /*
     if (!isConnected) {
         client.connect();
         isConnected = true;
-    };
+    }; 
+    */
 
     robaladaList = [];
 
@@ -230,9 +232,11 @@ bot.on('message', async message => {
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
 
+                    /*
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
+                    */
 
                     var length = robaladaShinyList.length - 1;
 
@@ -274,9 +278,11 @@ bot.on('message', async message => {
                     //var inserts = [robaladaStr];
                     //sql = mysql.format(sql, inserts);
 
+                    /*
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
+                    */
 
                     var length = robaladaList.length - 1;
 
@@ -308,9 +314,11 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaShinyList.length) {
 
+                        /*
                         client.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
                             if (err) throw err;
                         });
+                        */
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
@@ -340,9 +348,11 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
+                        /*
                         client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
                             if (err) throw err;
                         });
+                        */
 
                         robaladaList.splice(posicionABorrar, 1);
 
