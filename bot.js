@@ -13,9 +13,13 @@ var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
+
+
 bot.on('ready', () => {
 
     console.log('c biene');
+
+    console.log(process.env.DATABASE_URL);
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
