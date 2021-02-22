@@ -19,15 +19,17 @@ async function fetchRobaladas(isShiny) {
     });
 
     await doc.loadInfo(); // loads document properties and worksheets
-    console.log(doc.title);
+    //console.log(doc.title);
 
     const sheet = doc.sheetsByIndex[isShiny]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
-    console.log(sheet.title);
-    console.log(sheet.rowCount);
+    //console.log(sheet.title);
+    //console.log(sheet.rowCount);
 
     const rows = await sheet.getRows();
 
-    console.log(rows[1]);
+    rows.forEach(row => {
+        console.log(row)
+    });
 }
 
 var robaladaShinyList = [];
