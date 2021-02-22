@@ -27,7 +27,7 @@ async function fetchRobaladas(isShiny) {
 
     const rows = await sheet.getRows();
 
-    console.log(rows[0]);
+    console.log(rows[1]);
 }
 
 var robaladaShinyList = [];
