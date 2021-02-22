@@ -7,12 +7,12 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 
 // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
-await doc.useServiceAccountAuth({
+doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     private_key: process.env.GOOGLE_PRIVATE_KEY,
 });
 
-await doc.loadInfo(); // loads document properties and worksheets
+doc.loadInfo(); // loads document properties and worksheets
 //console.log(doc.title);
 
 async function fetchRobaladas(isShiny) {
