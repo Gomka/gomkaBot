@@ -6,38 +6,27 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 
-// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
-doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
-});
-
-doc.loadInfo(); // loads document properties and worksheets
-//console.log(doc.title);
-
 async function fetchRobaladas(isShiny) {
 
-    const sheet = doc.sheetsByIndex[isShiny]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
-    //console.log(sheet.title);
-    //console.log(sheet.rowCount);
+    // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
+    await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    });
 
-    //const newSheet = await doc.addSheet({ headerValues: ['index', 'robalada', "lore"] });
+    await doc.loadInfo(); // loads document properties and worksheets
 
-    sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
+    const sheet = doc.sheetsByIndex[isShiny];
 
     const rows = await sheet.getRows();
 
-    rows[2].delete();
-
-    //console.log(rows[1].rowIndex + " - row 1 index");
-
-    //console.log(rows[1].robalada);
-
-    /*
     rows.forEach(row => {
-        console.log(row)
+        robaladaList[0].push(row.robalada);
+        robaladaList[1].push(row.lore);
     }); 
-    */
+
+    console.log(robaladaList);
+    
 }
 
 var robaladaShinyList = [];
