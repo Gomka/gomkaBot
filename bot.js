@@ -17,15 +17,13 @@ async function fetchRobaladas() {
 
     const robaladaSheet = doc.sheetsByIndex[0]; // 0 is regular robaladas sheet
 
-    return await robaladaSheet.getRows();
-
-    /*
+    var robaladaRows = await robaladaSheet.getRows();
+    
     robaladaRows.forEach(row => {
         robaladaList.push([row.robalada, row.lore]);
     }); 
 
-    console.log(robaladaList);
-
+    console.log(robaladaList[0] + "              - > single element");
 
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
 
@@ -34,7 +32,7 @@ async function fetchRobaladas() {
     shinyRows.forEach(row => {
         robaladaShinyList.push([row.robalada, row.lore]);
     });     
-    */
+    
 }
 
 var robaladaShinyList = [];
@@ -50,11 +48,7 @@ bot.on('ready', () => {
     robaladaShinyList = [];
     robaladaList = [];
 
-    output = fetchRobaladas();
-    
-    output.forEach(row => {
-        robaladaList.push([row.robalada, row.lore]);
-    });
+    fetchRobaladas();
 
     console.log(robaladaList);
 
