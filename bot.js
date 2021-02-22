@@ -8,6 +8,7 @@ const { promisify } = require('util');
 const creds = process.env.CREDENTIALS;
 
 async function fetchRobaladas(isShiny) {
+    /*
     const { GoogleSpreadsheet } = require('google-spreadsheet');
 
     // Initialize the sheet - doc ID is the long id in the sheets URL
@@ -29,6 +30,7 @@ async function fetchRobaladas(isShiny) {
     const rows = await sheet.getRows();
 
     console.log(rows[0]);
+    */
 }
 
 var robaladaShinyList = [];
