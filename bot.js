@@ -29,9 +29,7 @@ async function fetchRobaladas(isShiny) {
 
     const rows = await sheet.getRows();
 
-    console.log(rows[3].robalada)
-
-    rows[4]
+    console.log(rows[3].value + " - row 3 value");
 
     /*
     rows.forEach(row => {
