@@ -25,6 +25,8 @@ async function fetchRobaladas(isShiny) {
     //console.log(sheet.title);
     //console.log(sheet.rowCount);
 
+    sheet.headerValues = ["index", "robalada", "lore"];
+
     console.log(sheet.headerValues);
 
     sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
