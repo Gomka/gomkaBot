@@ -2,16 +2,21 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
-const { Client } = require('pg');
+const GoogleSpreadsheet = require('google-spreadsheet');
+const { promisify } = require('util');
 
-const client = new Client({
-    connectionString: process.env.DATABASE_URL, //Database connection
-    ssl: true,
-});
+const creds = require(process.env.CREDENTIALS);
+
+async function accessSpreadsheet() {
+    const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
+    await promisify(doc.useServiceAccountAuth)(creds);
+    const info = await promisify(doc.getInfo)();
+    const sheet = info.worksheets[0]; //primera hoja
+    console.log(`title: ${sheet.title}, rows: ${sheet.rowCount}`);
+}
 
 var robaladaShinyList = [];
 var robaladaList = [];
-var isConnected = false;
 
 bot.on('ready', () => {
 
@@ -19,15 +24,10 @@ bot.on('ready', () => {
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
-    client.connect();
-    client.query('SELECT robalada FROM robaladas;', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-            robaladaList.push(row.robalada);
-        }
-    });
+    robaladaShinyList = [];
+    robaladaList = [];
 
-    console.log(robaladaList);
+    accessSpreadsheet();
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
