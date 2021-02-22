@@ -29,9 +29,9 @@ async function fetchRobaladas(isShiny) {
 
     sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
 
-    console.log(sheet.getRows[2]);
-
     const rows = await sheet.getRows();
+
+    console.log(rows[2]);
 
     //console.log(rows[1].rowIndex + " - row 1 index");
 
