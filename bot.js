@@ -31,7 +31,7 @@ async function fetchRobaladas(isShiny) {
 
     const rows = await sheet.getRows();
 
-    console.log(rows[2].delete);
+    rows[2].delete;
 
     //console.log(rows[1].rowIndex + " - row 1 index");
 
