@@ -17,9 +17,7 @@ async function fetchRobaladas() {
 
     const robaladaSheet = doc.sheetsByIndex[0]; // 0 is regular robaladas sheet
 
-    const robaladaRows = await robaladaSheet.getRows();
-
-    return robaladaRows;
+    return await robaladaSheet.getRows();
 
     /*
     robaladaRows.forEach(row => {
@@ -53,6 +51,7 @@ bot.on('ready', () => {
     robaladaList = [];
 
     output = fetchRobaladas();
+    
     output.forEach(row => {
         robaladaList.push([row.robalada, row.lore]);
     });
