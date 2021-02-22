@@ -23,7 +23,7 @@ async function fetchRobaladas() {
         robaladaList.push([row.robalada, row.lore]);
     }); 
 
-    console.log(robaladaList[0] + "              - > single element");
+    console.log(robaladaList[0][0] + "              - > single element");
 
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
 
@@ -50,11 +50,11 @@ bot.on('ready', () => {
 
     fetchRobaladas();
 
-    console.log(robaladaList);
+    //console.log(robaladaList);
 
-    console.log("Single element: ");
+    //console.log("Single element: ");
 
-    console.log(robaladaList[0]);
+    //console.log(robaladaList[0]);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
@@ -124,6 +124,11 @@ bot.on('message', async message => {
 
         message.channel.send("S I E M P R E");
 
+    }
+
+    if (messageLower == "testeo123") {
+
+        message.channel.send(robaladaList[0] + "               |   a saco");
     }
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
