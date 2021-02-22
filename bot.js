@@ -10,7 +10,7 @@ var robaladaList = [];
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
-    ssl: true,
+    ssl: { rejectUnauthorized: false },
 });
 
 bot.on('ready', () => {
@@ -26,7 +26,7 @@ bot.on('ready', () => {
         for (let row of res.rows) {
           robaladaList.push(row.robalada);
         }
-      });
+    });
 });
 
 bot.on("guildCreate", guild => {
@@ -53,19 +53,6 @@ bot.on('message', async message => {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
-
-    /*if (command === '¡ignorebot') {
-        if(messageStringsLower[1] === "true") {
-
-            config.ignoreBots = true;
-            message.channel.send("Ignore bots set to `true`");
-
-        } else if(messageStringsLower[1] === "false"){
-
-            config.ignoreBots = false;
-            message.channel.send("Ignore bots set to `false`");
-        }
-    }*/
 
     if (messageLower.includes("siempre")) {
 
