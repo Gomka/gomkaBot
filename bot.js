@@ -7,11 +7,11 @@ const { promisify } = require('util');
 
 const creds = process.env.CREDENTIALS;
 
-async function accessSpreadsheet() {
-    const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
+async function fetchRobaladas(isShiny) {
+    const doc = new GoogleSpreadsheet(""+process.env.SPREADSHEET);
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
-    const sheet = info.worksheets[0]; //primera hoja
+    const sheet = info.worksheets[isShiny]; //primera hoja
     console.log(`title: ${sheet.title}, rows: ${sheet.rowCount}`);
 }
 
@@ -27,7 +27,7 @@ bot.on('ready', () => {
     robaladaShinyList = [];
     robaladaList = [];
 
-    accessSpreadsheet();
+    fetchRobaladas(0); // 0 regular, 1 shiny
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
