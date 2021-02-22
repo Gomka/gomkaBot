@@ -23,7 +23,9 @@ async function fetchRobaladas() {
         robaladaList.push([row.robalada, row.lore]);
     }); 
 
- 
+    console.log(robaladaList);
+
+    /*
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
 
     const shinyRows = await shinySheet.getRows();
@@ -31,6 +33,7 @@ async function fetchRobaladas() {
     shinyRows.forEach(row => {
         robaladaShinyList.push([row.robalada, row.lore]);
     });     
+    */
 }
 
 var robaladaShinyList = [];
@@ -47,10 +50,6 @@ bot.on('ready', () => {
 
     fetchRobaladas();
 
-    console.log(robaladaList);
-
-    console.log("Single element: ")
-    
     console.log(robaladaList[0]);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
