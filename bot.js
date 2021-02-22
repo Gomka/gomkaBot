@@ -12,7 +12,7 @@ var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
-const pool = new Pool({
+const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
 });
