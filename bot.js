@@ -8,14 +8,14 @@ const mysql = require('mysql');
 
 const { Client } = require('pg');
 
-var robaladaShinyList = [];
-var robaladaList = [];
-var isConnected = false;
-
 const client = new Client({
     connectionString: process.env.DATABASE_URL, //Database connection
     ssl: true,
 });
+
+var robaladaShinyList = [];
+var robaladaList = [];
+var isConnected = false;
 
 bot.on('ready', () => {
 
@@ -28,7 +28,11 @@ bot.on('ready', () => {
     // robaladasshiny: id, robalada
 
     if (!isConnected) {
-        client.connect();
+        console.log("Attempting connection")
+        client.connect()
+        .then(() => console.log("Connection successful"))
+        .catch(e => console.log(e))
+        .finally(() => client.end())
         isConnected = true;
     }
 
