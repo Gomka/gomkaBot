@@ -126,9 +126,9 @@ bot.on('message', async message => {
 
     }
 
-    if (messageLower == "testeo123") {
+    if (messageLower == "me quiero morir") {
 
-        message.channel.send(robaladaList[0] + "               |   a saco");
+        message.channel.send(robaladaList[0][0]);
     }
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
