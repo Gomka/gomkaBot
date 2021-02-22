@@ -23,7 +23,7 @@ async function fetchRobaladas() {
         robaladaList.push([row.robalada, row.lore]);
     }); 
 
-    console.log(robaladaList);
+    //console.log(robaladaList);
 
     /*
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
