@@ -51,7 +51,8 @@ bot.on('ready', () => {
     robaladaShinyList = [];
     robaladaList = [];
 
-    fetchRobaladas().forEach(element => {
+    let output = fetchRobaladas();
+    output.forEach(element => {
         robaladaList.push([row.robalada, row.lore]);
     });
 
