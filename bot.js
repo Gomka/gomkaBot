@@ -13,12 +13,15 @@ var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
+console.log("attempting connection")
+
 client.connect()
 client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
     if (err) throw err;
     console.log(res);
 });
 
+console.log(client)
 
 bot.on('ready', () => {
 
