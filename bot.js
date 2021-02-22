@@ -25,19 +25,15 @@ async function fetchRobaladas(isShiny) {
     //console.log(sheet.title);
     //console.log(sheet.rowCount);
 
-    //sheet.headerValues = ["index", "robalada", "lore"];
-
-    const newSheet = await doc.addSheet({ headerValues: ['index', 'robalada', "lore"] });
+    //const newSheet = await doc.addSheet({ headerValues: ['index', 'robalada', "lore"] });
 
     sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
 
-    newSheet.addRow({index: 2, robalada: "anus", lore: "hermanus"});
-
     const rows = await sheet.getRows();
 
-    console.log(rows[0].rowIndex + " - row 3 index");
+    console.log(rows[1].rowIndex + " - row 1 index");
 
-    console.log(rows[0].robalada);
+    console.log(rows[1].robalada);
 
     await rows[1].delete();
 
