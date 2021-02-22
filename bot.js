@@ -27,9 +27,11 @@ async function fetchRobaladas(isShiny) {
 
     //sheet.headerValues = ["index", "robalada", "lore"];
 
-    const sheet = await doc.addSheet({ headerValues: ['index', 'robalada', "lore"] });
+    const newSheet = await doc.addSheet({ headerValues: ['index', 'robalada', "lore"] });
 
     sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
+
+    newSheet.addRow({index: 2, robalada: "anus", lore: "hermanus"});
 
     const rows = await sheet.getRows();
 
