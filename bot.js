@@ -5,7 +5,7 @@ const bot = new Discord.Client();
 const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
 
-const creds = require(process.env.CREDENTIALS);
+const creds = process.env.CREDENTIALS;
 
 async function accessSpreadsheet() {
     const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
