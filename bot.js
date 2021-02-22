@@ -19,7 +19,11 @@ bot.on('ready', () => {
 
     console.log('c biene');
 
-    console.log(process.env.DATABASE_URL);
+    console.log(isConnected);
+
+    console.log("----------------------------------------")
+
+    console.log(client);
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
