@@ -2,18 +2,17 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
-const GoogleSpreadsheet = require('google-spreadsheet');
-const { promisify } = require('util');
+const { GoogleSpreadsheet } = require('google-spreadsheet');
+// const { promisify } = require('util');
 
-const creds = process.env.CREDENTIALS;
+// const creds = process.env.CREDENTIALS;
+    
+// Initialize the sheet - doc ID is the long id in the sheets URL
+const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 
 async function fetchRobaladas(isShiny) {
+    
     /*
-    const { GoogleSpreadsheet } = require('google-spreadsheet');
-
-    // Initialize the sheet - doc ID is the long id in the sheets URL
-    const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
-
     // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
     await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
