@@ -13,29 +13,33 @@ var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
-
-
 bot.on('ready', () => {
 
     console.log('c biene');
 
-    console.log(isConnected);
-
-    console.log("----------------------------------------")
-
-    console.log(client);
-
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
+
+    client.connect();
+    client.query('SELECT robalada FROM robaladas;', (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+            robaladaList.push(row.robalada);
+        }
+    });
+
+    console.log(robaladaList);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
+    /*
     if (!isConnected) {
         console.log("Attempting connection")
         client.connect()
         isConnected = true;
     } 
+    
 
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
@@ -46,6 +50,7 @@ bot.on('ready', () => {
     });
 
 
+
     robaladaShinyList = [];
     client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
         if (err) throw err;
@@ -53,6 +58,7 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
+    */
 });
 
 bot.on("guildCreate", guild => {
