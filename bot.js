@@ -27,21 +27,22 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
-    /*
+    
     if (!isConnected) {
         client.connect();
         isConnected = true;
     }; 
-    */
+    
 
     robaladaList = [];
-
+    /*
     pool.query("SELECT robalada FROM robaladas", (err, res) => {
         console.log(err, res);
         pool.end();
     });
+    */
 
-    /*
+    
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
@@ -57,7 +58,7 @@ bot.on('ready', () => {
             robaladaShinyList.push(row.robalada);
         }
     });
-    */
+    
 });
 
 bot.on("guildCreate", guild => {
