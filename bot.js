@@ -13,16 +13,6 @@ var robaladaShinyList = [];
 var robaladaList = [];
 var isConnected = false;
 
-console.log("attempting connection")
-
-client.connect()
-client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
-    if (err) throw err;
-    console.log(res);
-});
-
-console.log(client)
-
 bot.on('ready', () => {
 
     console.log('c biene');
@@ -33,13 +23,11 @@ bot.on('ready', () => {
     // robaladas: index, robalada
     // robaladasshiny: id, robalada
 
-    /*
     if (!isConnected) {
         console.log("Attempting connection")
         client.connect()
         isConnected = true;
     } 
-    */
 
     robaladaList = [];
     client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
