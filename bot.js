@@ -73,7 +73,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("error", error => {
     // notify bot author when errors occur
-    client.users.fetch(process.env.AUTHOR_ID).then((user) => {
+    bot.users.fetch(process.env.AUTHOR_ID).then((user) => {
         user.send(error);
     });
 });
@@ -213,9 +213,11 @@ bot.on('message', async message => {
 
                     var sql = "INSERT INTO robaladasshiny VALUES(default, '" + robaladaStr + "');";
 
+                    /*
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
+                    */
 
                     var length = robaladaShinyList.length - 1;
 
@@ -247,9 +249,11 @@ bot.on('message', async message => {
 
                     var sql = "INSERT INTO robaladas VALUES(default, '" + robaladaStr + "');"; 
 
+                    /*
                     client.query(sql, (err, res) => {
                         if (err) throw err;
                     });
+                    */
 
                     var length = robaladaList.length - 1;
 
@@ -281,9 +285,11 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaShinyList.length) {
 
+                        /*
                         client.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
                             if (err) throw err;
                         });
+                        */
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
@@ -313,9 +319,11 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
+                        /*
                         client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
                             if (err) throw err;
                         });
+                        */
 
                         robaladaList.splice(posicionABorrar, 1);
 
@@ -478,7 +486,7 @@ bot.on('message', async message => {
         console.log('restarting');
 
         if (error) {
-            client.users.fetch(process.env.AUTHOR_ID).then((user) => {
+            bot.users.fetch(process.env.AUTHOR_ID).then((user) => {
                 user.send(error);
             });
         }
