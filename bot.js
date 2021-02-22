@@ -29,13 +29,13 @@ async function fetchRobaladas(isShiny) {
 
     sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
 
+    console.log(sheet.getRows[2]);
+
     const rows = await sheet.getRows();
 
-    console.log(rows[1].rowIndex + " - row 1 index");
+    //console.log(rows[1].rowIndex + " - row 1 index");
 
-    console.log(rows[1].robalada);
-
-    await rows[1].delete();
+    //console.log(rows[1].robalada);
 
     /*
     rows.forEach(row => {
