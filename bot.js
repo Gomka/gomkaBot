@@ -6,38 +6,8 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 
-async function fetchRobaladas() {
-
-    await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
-    });
-
-    await doc.loadInfo();
-
-    const robaladaSheet = doc.sheetsByIndex[0]; // 0 is regular robaladas sheet
-
-    var robaladaRows = await robaladaSheet.getRows();
-    
-    robaladaRows.forEach(row => {
-        robaladaList.push([row.robalada, row.lore]);
-    }); 
-
-    console.log(robaladaList[0][0] + "              - > single element");
-
-    const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
-
-    const shinyRows = await shinySheet.getRows();
-
-    shinyRows.forEach(row => {
-        robaladaShinyList.push([row.robalada, row.lore]);
-    });     
-    
-}
-
 var robaladaShinyList = [];
 var robaladaList = [];
-var output = [];
 
 bot.on('ready', () => {
 
@@ -49,12 +19,6 @@ bot.on('ready', () => {
     robaladaList = [];
 
     fetchRobaladas();
-
-    //console.log(robaladaList);
-
-    //console.log("Single element: ");
-
-    //console.log(robaladaList[0]);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
@@ -128,7 +92,7 @@ bot.on('message', async message => {
 
     if (messageLower == "me quiero morir") {
 
-        message.channel.send(robaladaList[0][0]);
+        message.channel.send("nah pero ten en cuenta");
     }
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
@@ -569,6 +533,35 @@ bot.on('message', async message => {
     }
 
 });
+
+async function fetchRobaladas() {
+
+    await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    });
+
+    await doc.loadInfo();
+
+    const robaladaSheet = doc.sheetsByIndex[0]; // 0 is regular robaladas sheet
+
+    var robaladaRows = await robaladaSheet.getRows();
+    
+    robaladaRows.forEach(row => {
+        robaladaList.push([row.robalada, row.lore]);
+    }); 
+
+    console.log(robaladaList[0][0] + "              - > single element");
+
+    const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
+
+    const shinyRows = await shinySheet.getRows();
+
+    shinyRows.forEach(row => {
+        robaladaShinyList.push([row.robalada, row.lore]);
+    });     
+    
+}
 
 // Heroku integration
 
