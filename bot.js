@@ -47,7 +47,7 @@ bot.on('ready', () => {
     fetchRobaladas();
 
     
-    console.log(robaladaList[0][0]);
+    console.log(robaladaList[0]);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
