@@ -25,11 +25,15 @@ async function fetchRobaladas(isShiny) {
     //console.log(sheet.title);
     //console.log(sheet.rowCount);
 
-    sheet.addRow({id: 1, robalada: "testicle", comentario_del_director: "eepa"});
+    console.log(sheet.headerValues);
+
+    sheet.addRow({index: 1, robalada: "testicle", lore: "eepa"});
 
     const rows = await sheet.getRows();
 
-    console.log(rows[3].value + " - row 3 value");
+    console.log(rows[2].rowIndex + " - row 3 index");
+
+    console.log(rows[2].robalada);
 
     /*
     rows.forEach(row => {
