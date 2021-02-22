@@ -41,6 +41,7 @@ async function fetchRobaladas() {
 
 var robaladaShinyList = [];
 var robaladaList = [];
+var output = [];
 
 bot.on('ready', () => {
 
@@ -51,8 +52,8 @@ bot.on('ready', () => {
     robaladaShinyList = [];
     robaladaList = [];
 
-    let output = fetchRobaladas();
-    output.forEach(element => {
+    output = fetchRobaladas();
+    output.forEach(row => {
         robaladaList.push([row.robalada, row.lore]);
     });
 
