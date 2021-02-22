@@ -17,7 +17,7 @@ async function fetchRobaladas(isShiny) {
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
-    /*
+
     await doc.loadInfo(); // loads document properties and worksheets
     console.log(doc.title);
 
@@ -28,7 +28,6 @@ async function fetchRobaladas(isShiny) {
     const rows = await sheet.getRows();
 
     console.log(rows[0]);
-    */
 }
 
 var robaladaShinyList = [];
