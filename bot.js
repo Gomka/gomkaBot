@@ -25,11 +25,19 @@ async function fetchRobaladas(isShiny) {
     //console.log(sheet.title);
     //console.log(sheet.rowCount);
 
+    sheet.addRow({id: 1, robalada: "testicle", comentario_del_director: "eepa"});
+
     const rows = await sheet.getRows();
 
+    console.log(rows[3].robalada)
+
+    rows[4]
+
+    /*
     rows.forEach(row => {
         console.log(row)
-    });
+    }); 
+    */
 }
 
 var robaladaShinyList = [];
