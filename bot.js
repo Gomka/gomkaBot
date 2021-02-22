@@ -31,10 +31,7 @@ async function fetchRobaladas() {
 
     shinyRows.forEach(row => {
         robaladaShinyList.push([row.robalada, row.lore]);
-    }); 
-
-    console.log(robaladaList);
-    
+    });     
 }
 
 var robaladaShinyList = [];
@@ -50,6 +47,9 @@ bot.on('ready', () => {
     robaladaList = [];
 
     fetchRobaladas();
+
+    
+    console.log(robaladaList[0]);
 
     // Retrieving the data from the database. In my particular case I have two tables: 
     // robaladas: index, robalada
