@@ -551,15 +551,15 @@ async function fetchRobaladas() {
         robaladaList.push([row.robalada, row.lore]);
     }); 
 
-    console.log(robaladaList[0][0] + "              - > single element");
-
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
 
     const shinyRows = await shinySheet.getRows();
 
     shinyRows.forEach(row => {
         robaladaShinyList.push([row.robalada, row.lore]);
-    });     
+    });   
+    
+    console.log(robaladaShinyList); //mañana miro a ver si esto chuta
     
 }
 
