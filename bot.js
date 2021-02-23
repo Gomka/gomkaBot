@@ -332,7 +332,7 @@ bot.on('message', async message => {
 
                 message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)][0]);
 
-                if(robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] != "*")
+                if (robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] != "*" && robaladaShinyList[parseInt(messageStringsLower[3], 10)][1])
 
                     message.channel.send("```" + "Lore: " + robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] + "```");
 
@@ -348,7 +348,7 @@ bot.on('message', async message => {
 
                 message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)][0]);
 
-                if(robaladaList[parseInt(messageStringsLower[2], 10)][1] != "*")
+                if (robaladaList[parseInt(messageStringsLower[2], 10)][1] != "*" && robaladaList[parseInt(messageStringsLower[2], 10)][1])
 
                     message.channel.send("```" + "Lore: " + robaladaList[parseInt(messageStringsLower[2], 10)][1] + "```");
 
@@ -366,15 +366,15 @@ bot.on('message', async message => {
 
             var length = robaladaShinyList.length;
 
-            if(length > 0) {
+            if (length > 0) {
 
                 message.channel.send("En total hay " + length + " robaladas shiny. La última (índice `" + (length - 1) + "`) es:");
                 message.channel.send(robaladaShinyList[length - 1][0]);
-    
-                if(robaladaShinyList[length - 1][1] != "*") {
+
+                if (robaladaShinyList[length - 1][1] != "*" && robaladaShinyList[length - 1][1]) {
 
                     message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```");
-                }    
+                }
 
             } else {
 
@@ -386,15 +386,15 @@ bot.on('message', async message => {
             var length = robaladaList.length;
 
 
-            if(length > 0) {
+            if (length > 0) {
 
                 message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
                 message.channel.send(robaladaList[length - 1][0]);
-    
-                if(robaladaList[length - 1][1] != "*") {
+
+                if (robaladaList[length - 1][1] != "*" && robaladaList[length - 1][1]) {
 
                     message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```");
-                }    
+                }
 
             } else {
 
@@ -522,8 +522,8 @@ async function fetchRobaladas() {
     robaladaList = [];
 
     await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
 
     await doc.loadInfo();
@@ -531,10 +531,10 @@ async function fetchRobaladas() {
     const robaladaSheet = doc.sheetsByIndex[0]; // 0 is regular robaladas sheet
 
     var robaladaRows = await robaladaSheet.getRows();
-    
+
     robaladaRows.forEach(row => {
         robaladaList.push([row.robalada, row.lore]);
-    }); 
+    });
 
     const shinySheet = doc.sheetsByIndex[1]; // 1 is shiny robaladas sheet
 
@@ -542,30 +542,30 @@ async function fetchRobaladas() {
 
     shinyRows.forEach(row => {
         robaladaShinyList.push([row.robalada, row.lore]);
-    });   
-    
+    });
+
 }
 
 async function addRobalada(robaladaStr, isShiny) {
 
     await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
 
     await doc.loadInfo();
 
     const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet, 1 shiny
-    
-    await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
-    
+
+    await sheet.addRow({ robalada: robaladaStr, lore: '*' });
+
 }
 
 async function deleteRobalada(num, isShiny) {
 
     await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
 
     await doc.loadInfo();
@@ -573,9 +573,9 @@ async function deleteRobalada(num, isShiny) {
     const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet
 
     var rows = await sheet.getRows();
-    
+
     await rows[num].delete();
-    
+
 }
 
 // Heroku integration
