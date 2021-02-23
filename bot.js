@@ -175,7 +175,7 @@ bot.on('message', async message => {
 
                     robaladaShinyList.push([robaladaStr, "*"]);
 
-                    addRobalada(robaladaStr, 1); //1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, shiny === true ? 1 : 0); //1 for shiny, 0 for regular
 
                     var length = robaladaShinyList.length - 1;
 
@@ -205,7 +205,7 @@ bot.on('message', async message => {
 
                     robaladaList.push([robaladaStr, "*"]);
 
-                    addRobalada(robaladaStr, 0); // 1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, shiny === true ? 1 : 0); // 1 for shiny, 0 for regular
 
                     var length = robaladaList.length - 1;
 
