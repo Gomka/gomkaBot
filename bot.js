@@ -207,6 +207,8 @@ bot.on('message', async message => {
 
                     robaladaList.push([robaladaStr, "*"]);
 
+                    console.log(robaladaStr);
+
                     addRobalada(robaladaStr, shiny);
 
                     var length = robaladaList.length - 1;
@@ -527,6 +529,10 @@ async function addRobalada(robaladaStr, isShiny) {
     });
 
     await doc.loadInfo();
+
+    console.log(robaladaStr);
+
+    console.log(isShiny);
 
     const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet, 1 shiny
     
