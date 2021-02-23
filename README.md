@@ -12,13 +12,15 @@ All variables from process.env are from heroku's config vars.
 
 `ping`: The bot will pong, measuring both the bot and api latency. The bot will also announce that your head itches from inside.
 
-if a message contains the word `siempre` the bot will say S I E M P R E
+`me quiero morir`: The bot will say "nah pero ten en cuenta".
 
-if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵
+if a message contains the word `siempre` the bot will say S I E M P R E.
+
+if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵.
 
 `gomkabot restart`: Restarts the bot. (this command can only be issued by the bot owner).
 
-### `robalada` family of commands: Consists on a postgresql based persistency storage of strings.
+### `robalada` family of commands: Consists on a persistency storage of strings.
 
 `robalada add [string]`: If that message was sent by the author of the bot, the string in [] is added to the database, and the bot will announce the index of the robalada added.
 	
@@ -26,11 +28,11 @@ if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 �
 	
 `robalada all`: Prints all the strings in the database. Only the bot owner can issue this command to prevent massive spam.
 	
-`robalada last`: Indicates the total ammount of robaladas and prints the last one added.
+`robalada last`: Indicates the total ammount of robaladas and prints the last one added, and if possible prints it's lore.
 
-`robalada num [int]`: Prints the nth robalada.
+`robalada num [int]`: Prints the nth robalada and if exists also prints it's lore.
 
-`robalada bomb`: Dumps 4 robaladas in a row. (only one message to prevent spam)
+`robalada bomb`: Dumps 4 robaladas in a row. (if possible, only one message to prevent spam)
 
 `gomkabot restart`: Restarts the bot (only the bot owner can issue this command)
 	
