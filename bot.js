@@ -175,7 +175,7 @@ bot.on('message', async message => {
 
                     robaladaShinyList.push([robaladaStr, "*"]);
 
-                    addRobalada(robaladaStr, isShiny); //1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, 1); //1 for shiny, 0 for regular
 
                     var length = robaladaShinyList.length - 1;
 
@@ -205,7 +205,7 @@ bot.on('message', async message => {
 
                     robaladaList.push([robaladaStr, "*"]);
 
-                    addRobalada(robaladaStr, isShiny); // 1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, 0); // 1 for shiny, 0 for regular
 
                     var length = robaladaList.length - 1;
 
@@ -524,11 +524,7 @@ async function addRobalada(robaladaStr, isShiny) {
 
     await doc.loadInfo();
 
-    if(isShiny) {
-        const sheet = doc.sheetsByIndex[1]; // 0 is regular robaladas sheet, 1 shiny
-    } else {
-        const sheet = doc.sheetsByIndex[0]; 
-    }
+    const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet, 1 shiny
     
     await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
     
