@@ -369,16 +369,36 @@ bot.on('message', async message => {
 
             var length = robaladaShinyList.length;
 
-            message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
-            message.channel.send(robaladaShinyList[length - 1]);
+            if(length > 0) {
+
+                message.channel.send("En total hay " + length + " robaladas shiny. La última (índice `" + (length - 1) + "`) es:");
+                message.channel.send(robaladaShinyList[length - 1][0]);
+    
+                if(robaladaShinyList[length - 1][1] != "*")
+    
+                        message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```");
+            } else {
+
+                message.channel.send("No ih ah robal escques");
+            }
 
         } else {
 
             var length = robaladaList.length;
 
-            message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
-            message.channel.send(robaladaList[length - 1]);
 
+            if(length > 0) {
+
+                message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
+                message.channel.send(robaladaList[length - 1][0]);
+    
+                if(robaladaList[length - 1][1] != "*")
+    
+                        message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```");
+            } else {
+
+                message.channel.send("No ih ah robal escques");
+            }
         }
     }
 
