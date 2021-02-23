@@ -16,7 +16,6 @@ bot.on('ready', () => {
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
     fetchRobaladas();
-
 });
 
 bot.on("guildCreate", guild => {
