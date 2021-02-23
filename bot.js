@@ -127,20 +127,13 @@ bot.on('message', async message => {
 
             robaladaBomb();
 
-        } else if (messageLower === "robalada lore") {
+        } else {
 
             shiny = Math.random() >= 0.98;
             randomTTs = Math.random() >= 0.95;
 
-            message.channel.send(robaladaRandom(shiny, true), { tts: randomTTs });
+            message.channel.send(robaladaRandom(shiny), { tts: randomTTs });
 
-        }else {
-
-            shiny = Math.random() >= 0.98;
-            randomTTs = Math.random() >= 0.95;
-
-            message.channel.send(robaladaRandom(shiny, false), { tts: randomTTs });
-            
         }
     }
 
@@ -410,7 +403,7 @@ bot.on('message', async message => {
         }
     }
 
-    function robaladaRandom(Shiny, hasLore) {
+    function robaladaRandom(Shiny) {
 
         if (Shiny) {
 
@@ -418,22 +411,12 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                var loreText = "";
-
-                if(hasLore) {
-
-                    if(robaladaShinyList[index][1] != "*") 
-                        loreText = "```Lore: " + robaladaShinyList[index][1] + "```";
-
-                }
-
-                return ("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index][0] + loreText);
+                return ("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index][0]);
 
             } else {
 
                 return ("No robaladas SHINY to deliver (yet)");
             }
-            
 
         } else {
 
@@ -441,16 +424,7 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                var loreText = "";
-
-                if(hasLore) {
-
-                    if(robaladaList[index][1] != "*") 
-                        loreText = "```Lore: " + robaladaList[index][1] + "```";
-
-                }
-
-                return ("`" + index + ":` " + robaladaList[index][0] + loreText);
+                return ("`" + index + ":` " + robaladaList[index][0]);
 
             } else {
 
@@ -470,7 +444,7 @@ bot.on('message', async message => {
         for (let index = 0; index < 4; index++) {
 
             shiny = Math.random() >= 0.98;
-            robaladaAux = robaladaRandom(shiny, false);
+            robaladaAux = robaladaRandom(shiny);
 
             if ((robaladaBomb + robaladaAux + "\n").length < 2000) {
                 robaladaBomb += robaladaAux + "\n";
