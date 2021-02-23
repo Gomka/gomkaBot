@@ -34,9 +34,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("error", error => {
     // notify bot author when errors occur
-    bot.users.fetch(process.env.AUTHOR_ID).then((user) => {
-        user.send(error);
-    });
+    bot.users.get(process.env.AUTHOR_ID).send(error);
 });
 
 bot.on('message', async message => {
@@ -440,9 +438,7 @@ bot.on('message', async message => {
         console.log('restarting');
 
         if (error) {
-            bot.users.fetch(process.env.AUTHOR_ID).then((user) => {
-                user.send(error);
-            });
+            bot.users.get(process.env.AUTHOR_ID).send(error);
         }
 
         message.channel.send("A wueno adios master 😩");
@@ -528,7 +524,7 @@ async function addRobalada(robaladaStr, isShiny) {
 
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByIndex[isShiny = true ? 1 : 0]; // 0 is regular robaladas sheet, 1 shiny
+    const sheet = doc.sheetsByIndex[(isShiny = true ? 1 : 0)]; // 0 is regular robaladas sheet, 1 shiny
     
     await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
     
