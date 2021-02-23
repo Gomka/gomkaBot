@@ -524,7 +524,11 @@ async function addRobalada(robaladaStr, isShiny) {
 
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByIndex[Number(isShiny)]; // 0 is regular robaladas sheet, 1 shiny
+    if(isShiny) {
+        const sheet = doc.sheetsByIndex[1]; // 0 is regular robaladas sheet, 1 shiny
+    } else {
+        const sheet = doc.sheetsByIndex[0]; 
+    }
     
     await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
     
