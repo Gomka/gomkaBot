@@ -128,28 +128,7 @@ bot.on('message', async message => {
 
         } else if (messageStringsLower[0] === "robalada" && messageStringsLower[1] === "bomb") {
 
-            var robaladaBomb = "";
-            var robaladaBomb2 = "";
-            var robaladaAux = "";
-
-            randomTTs = Math.random() >= 0.95;
-
-            for (let index = 0; index < 4; index++) {
-
-                shiny = Math.random() >= 0.98;
-                robaladaAux = robaladaRandom(shiny);
-
-                if ((robaladaBomb + robaladaAux + "\n").length < 2000) {
-                    robaladaBomb += robaladaAux + "\n";
-
-                } else
-                    robaladaBomb2 += robaladaAux + "\n";
-            }
-
-            message.channel.send(robaladaBomb, { tts: randomTTs });
-
-            if (robaladaBomb2.length > 0)
-                message.channel.send(robaladaBomb2, { tts: randomTTs });
+            robaladaBomb();
 
         } else {
 
@@ -352,9 +331,15 @@ bot.on('message', async message => {
 
         if (shiny) {
 
-            if (parseInt(messageStringsLower[3], 10) < robaladaShinyList.length) {
+            var i = parseInt(messageStringsLower[3], 10);
 
-                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)]);
+            if (i < robaladaShinyList.length) {
+
+                message.channel.send(robaladaShinyList[i][0]);
+
+                if(robaladaShinyList[i][0] != "*")
+
+                    message.channel.send("```" + "Lore: " + robaladaShinyList[i][0] + "```");
 
             } else {
 
@@ -364,9 +349,15 @@ bot.on('message', async message => {
 
         } else {
 
-            if (parseInt(messageStringsLower[2], 10) < robaladaList.length) {
+            var i = parseInt(messageStringsLower[3], 10);
 
-                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)]);
+            if (i < robaladaList.length) {
+
+                message.channel.send(robaladaList[i][0]);
+
+                if(robaladaList[i][0] != "*")
+
+                    message.channel.send("```" + "Lore: " + robaladaList[i][0] + "```");
 
             } else {
 
@@ -423,6 +414,32 @@ bot.on('message', async message => {
                 return ("No robaladas to deliver (yet)");
             }
         }
+    }
+
+    function robaladaBomb() {
+
+        var robaladaBomb = "";
+        var robaladaBomb2 = "";
+        var robaladaAux = "";
+
+        randomTTs = Math.random() >= 0.95;
+
+        for (let index = 0; index < 4; index++) {
+
+            shiny = Math.random() >= 0.98;
+            robaladaAux = robaladaRandom(shiny);
+
+            if ((robaladaBomb + robaladaAux + "\n").length < 2000) {
+                robaladaBomb += robaladaAux + "\n";
+
+            } else
+                robaladaBomb2 += robaladaAux + "\n";
+        }
+
+        message.channel.send(robaladaBomb, { tts: randomTTs });
+
+        if (robaladaBomb2.length > 0)
+            message.channel.send(robaladaBomb2, { tts: randomTTs });
     }
 
     function restart(error) {
