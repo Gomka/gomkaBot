@@ -559,7 +559,7 @@ async function fetchRobaladas() {
         robaladaShinyList.push([row.robalada, row.lore]);
     });   
     
-    console.log(robaladaShinyList); //mañana miro a ver si esto chuta
+    await robaladaSheet.addRow({ robalada: 'cum de cabra', lore: 'retrol' });
     
 }
 
