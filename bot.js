@@ -418,9 +418,9 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                if(hasLore) {
+                var loreText = "";
 
-                    var loreText = "";
+                if(hasLore) {
 
                     if(robaladaShinyList[index][1] != "*") 
                         loreText = "```Lore: " + robaladaShinyList[index][1] + "```";
@@ -441,9 +441,9 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                if(hasLore) {
+                var loreText = "";
 
-                    var loreText = "";
+                if(hasLore) {
 
                     if(robaladaList[index][1] != "*") 
                         loreText = "```Lore: " + robaladaList[index][1] + "```";
