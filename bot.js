@@ -149,7 +149,7 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    await addRobalada(robaladaStr, shiny === true ? 1 : 0); //1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, shiny === true ? 1 : 0); //1 for shiny, 0 for regular
 
                     robaladaShinyList.push([robaladaStr, "*"]);
 
@@ -179,7 +179,7 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    await addRobalada(robaladaStr, shiny === true ? 1 : 0); // 1 for shiny, 0 for regular
+                    addRobalada(robaladaStr, shiny === true ? 1 : 0); // 1 for shiny, 0 for regular
 
                     robaladaList.push([robaladaStr, "*"]);
 
@@ -213,7 +213,7 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaShinyList.length) {
 
-                        await deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
+                        deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
@@ -243,7 +243,7 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
-                        await deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
+                        deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
 
                         robaladaList.splice(posicionABorrar, 1);
 
