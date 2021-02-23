@@ -173,9 +173,9 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    robaladaShinyList.push([robaladaStr, "*"]);
-
                     addRobalada(robaladaStr, shiny === true ? 1 : 0); //1 for shiny, 0 for regular
+
+                    robaladaShinyList.push([robaladaStr, "*"]);
 
                     var length = robaladaShinyList.length - 1;
 
@@ -203,9 +203,9 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    robaladaList.push([robaladaStr, "*"]);
-
                     addRobalada(robaladaStr, shiny === true ? 1 : 0); // 1 for shiny, 0 for regular
+
+                    robaladaList.push([robaladaStr, "*"]);
 
                     var length = robaladaList.length - 1;
 
@@ -237,11 +237,7 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaShinyList.length) {
 
-                        /*
-                        client.query("DELETE FROM robaladasshiny WHERE robalada = \'" + robaladaShinyList[posicionABorrar] + "\';", (err, res) => {
-                            if (err) throw err;
-                        });
-                        */
+                        deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
@@ -271,11 +267,7 @@ bot.on('message', async message => {
 
                     if (!isNaN(posicionABorrar) && posicionABorrar >= 0 && posicionABorrar < robaladaList.length) {
 
-                        /*
-                        client.query("DELETE FROM robaladas WHERE robalada = \'" + robaladaList[posicionABorrar] + "\';", (err, res) => {
-                            if (err) throw err;
-                        });
-                        */
+                        deleteRobalada(posicionABorrar, shiny === true ? 1 : 0) // 1 for shiny, 0 for regular
 
                         robaladaList.splice(posicionABorrar, 1);
 
@@ -411,7 +403,7 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaShinyList.length);
 
-                return ("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index]);
+                return ("`BATUA L'OLLA, ROBALESCA SHINY!😳` " + robaladaShinyList[index][0]);
 
             } else {
 
@@ -424,7 +416,7 @@ bot.on('message', async message => {
 
                 index = Math.floor(Math.random() * robaladaList.length);
 
-                return ("`" + index + ":` " + robaladaList[index]);
+                return ("`" + index + ":` " + robaladaList[index][0]);
 
             } else {
 
@@ -527,6 +519,23 @@ async function addRobalada(robaladaStr, isShiny) {
     const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet, 1 shiny
     
     await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
+    
+}
+
+async function deleteRobalada(num, isShiny) {
+
+    await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    });
+
+    await doc.loadInfo();
+
+    const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet
+
+    var rows = await sheet.getRows();
+    
+    await rows[num].delete();
     
 }
 
