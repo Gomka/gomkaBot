@@ -15,9 +15,6 @@ bot.on('ready', () => {
 
     bot.user.setPresence({ game: { name: '👀', type: 3 } });
 
-    robaladaShinyList = [];
-    robaladaList = [];
-
     fetchRobaladas();
 
 });
@@ -374,9 +371,11 @@ bot.on('message', async message => {
                 message.channel.send("En total hay " + length + " robaladas shiny. La última (índice `" + (length - 1) + "`) es:");
                 message.channel.send(robaladaShinyList[length - 1][0]);
     
-                if(robaladaShinyList[length - 1][1] != "*")
-    
-                        message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```");
+                if(robaladaShinyList[length - 1][1] != "*") {
+
+                    message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```");
+                }    
+
             } else {
 
                 message.channel.send("No ih ah robal escques");
@@ -392,9 +391,11 @@ bot.on('message', async message => {
                 message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
                 message.channel.send(robaladaList[length - 1][0]);
     
-                if(robaladaList[length - 1][1] != "*")
-    
-                        message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```");
+                if(robaladaList[length - 1][1] != "*") {
+
+                    message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```");
+                }    
+
             } else {
 
                 message.channel.send("No ih ah robal escques");
@@ -469,6 +470,8 @@ bot.on('message', async message => {
         message.channel.send("A wueno adios master 😩");
         bot.destroy();
         bot.login(process.env.BOT_TOKEN);
+
+        fetchRobaladas();
     }
 
     if (messageStringsLower[0] === "roll") {
@@ -514,6 +517,9 @@ bot.on('message', async message => {
 });
 
 async function fetchRobaladas() {
+
+    robaladaShinyList = [];
+    robaladaList = [];
 
     await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
