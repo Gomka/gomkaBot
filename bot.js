@@ -335,7 +335,7 @@ bot.on('message', async message => {
 
                 message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)][0]);
 
-                if(robaladaList[parseInt(messageStringsLower[3], 10)][0] != "*")
+                if(robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] != "*")
 
                     message.channel.send("```" + "Lore: " + robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] + "```");
 
@@ -351,7 +351,7 @@ bot.on('message', async message => {
 
                 message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)][0]);
 
-                if(robaladaList[parseInt(messageStringsLower[2], 10)][0] != "*")
+                if(robaladaList[parseInt(messageStringsLower[2], 10)][1] != "*")
 
                     message.channel.send("```" + "Lore: " + robaladaList[parseInt(messageStringsLower[2], 10)][1] + "```");
 
