@@ -331,17 +331,13 @@ bot.on('message', async message => {
 
         if (shiny) {
 
-            var i = parseInt(messageStringsLower[3], 10);
+            if (parseInt(messageStringsLower[3], 10) < robaladaShinyList.length) {
 
-            console.log(i);
+                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)][0]);
 
-            if (i < robaladaShinyList.length) {
+                if(robaladaList[parseInt(messageStringsLower[3], 10)][0] != "*")
 
-                message.channel.send(robaladaShinyList[i][0]);
-
-                if(robaladaShinyList[i][0] != "*")
-
-                    message.channel.send("```" + "Lore: " + robaladaShinyList[i][0] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] + "```");
 
             } else {
 
@@ -351,17 +347,13 @@ bot.on('message', async message => {
 
         } else {
 
-            var i = parseInt(messageStringsLower[3], 10);
+            if (parseInt(messageStringsLower[2], 10) < robaladaList.length) {
 
-            console.log(i);
+                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)][0]);
 
-            if (i < robaladaList.length) {
+                if(robaladaList[parseInt(messageStringsLower[2], 10)][0] != "*")
 
-                message.channel.send(robaladaList[i][0]);
-
-                if(robaladaList[i][0] != "*")
-
-                    message.channel.send("```" + "Lore: " + robaladaList[i][0] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaList[parseInt(messageStringsLower[2], 10)][1] + "```");
 
             } else {
 
