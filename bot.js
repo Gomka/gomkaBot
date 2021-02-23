@@ -304,14 +304,14 @@ bot.on('message', async message => {
 
                 for (i in robaladaShinyList) {
 
-                    if (((totalString.length + robaladaShinyList[i].length + i.toString().length) + 7) <= 2000) {
+                    if (((totalString.length + robaladaShinyList[i][0].length + i.toString().length) + 7) <= 2000) {
 
-                        totalString += "```" + i + "-" + robaladaShinyList[i] + "```";
+                        totalString += "```" + i + "-" + robaladaShinyList[i][0] + "```";
 
                     } else {
 
                         message.channel.send(totalString);
-                        totalString = "```" + i + "-" + robaladaShinyList[i] + "```";
+                        totalString = "```" + i + "-" + robaladaShinyList[i][0] + "```";
 
                     }
                 }
@@ -331,14 +331,14 @@ bot.on('message', async message => {
 
                 for (i in robaladaList) {
 
-                    if (((totalString.length + robaladaList[i].length + i.toString().length) + 7) <= 2000) {
+                    if (((totalString.length + robaladaList[i][0].length + i.toString().length) + 7) <= 2000) {
 
-                        totalString += "```" + i + "-" + robaladaList[i] + "```";
+                        totalString += "```" + i + "-" + robaladaList[i][0] + "```";
 
                     } else {
 
                         message.channel.send(totalString);
-                        totalString = "```" + i + "-" + robaladaList[i] + "```";
+                        totalString = "```" + i + "-" + robaladaList[i][0] + "```";
 
                     }
                 }
