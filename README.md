@@ -36,6 +36,6 @@ if a message contains the text `comid` the bot will say 𝓮𝓷𝓳𝓸𝔂 �
 
 `gomkabot restart`: Restarts the bot (only the bot owner can issue this command)
 	
-- if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database. There is a 1/50 to get a shiny special robalada, stored in a different table in the database.
+- if a message contains the word `robalada` and is not triggering the previous commands, the bot will print a random string from the robalada database. There is a 2% chance to get a shiny special robalada, stored in a different table in the database.
 
 All of the previous commands apply to the shiny robaladas with the syntax `robalada shiny [command]` (Only the bot owner can issue the shiny versions).

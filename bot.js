@@ -569,7 +569,7 @@ async function deleteRobalada(num, isShiny) {
 
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet
+    const sheet = doc.sheetsByIndex[isShiny];
 
     var rows = await sheet.getRows();
 
