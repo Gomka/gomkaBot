@@ -20,36 +20,6 @@ bot.on('ready', () => {
 
     fetchRobaladas();
 
-    // Retrieving the data from the database. In my particular case I have two tables: 
-    // robaladas: index, robalada
-    // robaladasshiny: id, robalada
-
-    /*
-    if (!isConnected) {
-        console.log("Attempting connection")
-        client.connect()
-        isConnected = true;
-    } 
-    
-
-    robaladaList = [];
-    client.query('SELECT robalada FROM robaladas ORDER BY index;', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-            robaladaList.push(row.robalada);
-        }
-    });
-
-
-
-    robaladaShinyList = [];
-    client.query('SELECT robalada FROM robaladasshiny ORDER BY id;', (err, res) => {
-        if (err) throw err;
-        for (let row of res.rows) {
-            robaladaShinyList.push(row.robalada);
-        }
-    });
-    */
 });
 
 bot.on("guildCreate", guild => {
@@ -205,15 +175,9 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    robaladaShinyList.push(robaladaStr);
+                    robaladaShinyList.push([robaladaStr, "*"]);
 
-                    var sql = "INSERT INTO robaladasshiny VALUES(default, '" + robaladaStr + "');";
-
-                    /*
-                    client.query(sql, (err, res) => {
-                        if (err) throw err;
-                    });
-                    */
+                    addRobalada(robaladaStr, shiny);
 
                     var length = robaladaShinyList.length - 1;
 
@@ -241,15 +205,9 @@ bot.on('message', async message => {
 
                     robaladaStr = robaladaStr.replace("'", "");
 
-                    robaladaList.push(robaladaStr);
+                    robaladaList.push([robaladaStr, "*"]);
 
-                    var sql = "INSERT INTO robaladas VALUES(default, '" + robaladaStr + "');"; 
-
-                    /*
-                    client.query(sql, (err, res) => {
-                        if (err) throw err;
-                    });
-                    */
+                    addRobalada(robaladaStr, shiny);
 
                     var length = robaladaList.length - 1;
 
@@ -559,7 +517,20 @@ async function fetchRobaladas() {
         robaladaShinyList.push([row.robalada, row.lore]);
     });   
     
-    await robaladaSheet.addRow({ robalada: 'cum de cabra', lore: 'retrol' });
+}
+
+async function addRobalada(robaladaStr, isShiny) {
+
+    await doc.useServiceAccountAuth({
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    });
+
+    await doc.loadInfo();
+
+    const sheet = doc.sheetsByIndex[isShiny]; // 0 is regular robaladas sheet, 1 shiny
+    
+    await sheet.addRow({ robalada: robaladaStr, lore: '*' });  
     
 }
 
