@@ -333,6 +333,8 @@ bot.on('message', async message => {
 
             var i = parseInt(messageStringsLower[3], 10);
 
+            console.log(i);
+
             if (i < robaladaShinyList.length) {
 
                 message.channel.send(robaladaShinyList[i][0]);
@@ -350,6 +352,8 @@ bot.on('message', async message => {
         } else {
 
             var i = parseInt(messageStringsLower[3], 10);
+
+            console.log(i);
 
             if (i < robaladaList.length) {
 
