@@ -44,35 +44,35 @@ bot.on('message', async message => {
     if (messageStringsLower[0] === "ping") {
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
-        const m = await message.channel.send("Ping?");
+        const m = await message.channel.send("Ping?").catch(console.log("sa crujio aw shid"));
         m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms. A <@` + message.author.id + `> le pica la cabeza por dentro.`);
     }
 
     if (messageLower.includes("siempre")) {
 
-        message.channel.send("S I E M P R E");
+        message.channel.send("S I E M P R E").catch(console.log("sa crujio aw shid"));
 
     }
 
     if (messageLower == "me quiero morir") {
 
-        message.channel.send("nah pero ten en cuenta");
+        message.channel.send("nah pero ten en cuenta").catch(console.log("sa crujio aw shid"));
     }
 
     if (messageLower == "robalda" || messageLower == "roblda" || messageLower == "robalanda") { // hay que hacer un diccionario de las pronunciaciones incorrectas
 
-        message.channel.send("ximplet, ximplet...", { tts: true });
+        message.channel.send("ximplet, ximplet...", { tts: true }).catch(console.log("sa crujio aw shid"));
 
     }
 
     if (messageLower == "gomkabot" || messageLower == "gomka bot") {
 
-        message.channel.send("E x p o s e d: https://github.com/Gomka/gomkaBot");
+        message.channel.send("E x p o s e d: https://github.com/Gomka/gomkaBot").catch(console.log("sa crujio aw shid"));
     }
 
     if (messageLower.includes("comid")) {
 
-        message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵");
+        message.channel.send("𝓮𝓷𝓳𝓸𝔂 𝔂𝓸𝓾𝓻 𝓶𝓮𝓪𝓵").catch(console.log("sa crujio aw shid"));
     }
 
     if (messageLower == "gomkabot restart" && message.author.id == process.env.AUTHOR_ID) {
@@ -131,7 +131,7 @@ bot.on('message', async message => {
             shiny = Math.random() >= 0.98;
             randomTTs = Math.random() >= 0.95;
 
-            message.channel.send(robaladaRandom(shiny), { tts: randomTTs });
+            message.channel.send(robaladaRandom(shiny), { tts: randomTTs }).catch(console.log("sa crujio aw shid"));
 
         }
     }
@@ -154,7 +154,7 @@ bot.on('message', async message => {
 
                     var length = robaladaShinyList.length - 1;
 
-                    message.channel.send("`Robalada shiny nº" + length + " satisfactoriamente sintetizada.`");
+                    message.channel.send("`Robalada shiny nº" + length + " satisfactoriamente sintetizada.`").catch(console.log("sa crujio aw shid"));
 
                 }
                 catch (error) {
@@ -163,7 +163,7 @@ bot.on('message', async message => {
 
             } else {
 
-                message.channel.send("Kemekomenta kuenta");
+                message.channel.send("Kemekomenta kuenta").catch(console.log("sa crujio aw shid"));
                 bot.users.get(process.env.AUTHOR_ID).send(message.content); //Sends the potential robalada to the bot owner
 
             }
@@ -184,7 +184,7 @@ bot.on('message', async message => {
 
                     var length = robaladaList.length - 1;
 
-                    message.channel.send("`Robalada nº" + length + " satisfactoriamente sintetizada.`");
+                    message.channel.send("`Robalada nº" + length + " satisfactoriamente sintetizada.`").catch(console.log("sa crujio aw shid"));
 
                 }
                 catch (error) {
@@ -193,7 +193,7 @@ bot.on('message', async message => {
 
             } else {
 
-                message.channel.send("Kemekomenta kuenta");
+                message.channel.send("Kemekomenta kuenta").catch(console.log("sa crujio aw shid"));
                 bot.users.get(process.env.AUTHOR_ID).send(message.content); //Sends the potential robalada to the bot owner
 
             }
@@ -216,11 +216,11 @@ bot.on('message', async message => {
 
                         robaladaShinyList.splice(posicionABorrar, 1);
 
-                        message.channel.send("`Robalada cleansed successfully`");
+                        message.channel.send("`Robalada cleansed successfully`").catch(console.log("sa crujio aw shid"));
 
                     } else {
 
-                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.").catch(console.log("sa crujio aw shid"));
                     }
                 }
                 catch (error) {
@@ -229,7 +229,7 @@ bot.on('message', async message => {
 
             } else {
 
-                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.").catch(console.log("sa crujio aw shid"));
 
             }
         } else {
@@ -246,11 +246,11 @@ bot.on('message', async message => {
 
                         robaladaList.splice(posicionABorrar, 1);
 
-                        message.channel.send("`Robalada cleansed successfully`");
+                        message.channel.send("`Robalada cleansed successfully`").catch(console.log("sa crujio aw shid"));
 
                     } else {
 
-                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.");
+                        message.channel.send("No sigui mico. No hi puc fer l'esborreja d'aquesta robaleja.").catch(console.log("sa crujio aw shid")).catch(console.log("sa crujio aw shid"));
                     }
                 }
                 catch (error) {
@@ -259,7 +259,7 @@ bot.on('message', async message => {
 
             } else {
 
-                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.");
+                message.channel.send("Oh, senyor <@" + message.author.id + ">, veig que intenta jaqejar el nostre sistema Robalesc. La Colla Herba hi será informada.").catch(console.log("sa crujio aw shid"));
 
             }
         }
@@ -271,7 +271,7 @@ bot.on('message', async message => {
 
             if (robaladaShinyList.length == 0) {
 
-                message.channel.send("Robalada shiny list currently empty.");
+                message.channel.send("Robalada shiny list currently empty.").catch(console.log("sa crujio aw shid"));
 
             } else {
 
@@ -285,20 +285,20 @@ bot.on('message', async message => {
 
                     } else {
 
-                        message.channel.send(totalString);
+                        message.channel.send(totalString).catch(console.log("sa crujio aw shid"));
                         totalString = "```" + i + "-" + robaladaShinyList[i][0] + "```";
 
                     }
                 }
 
-                message.channel.send(totalString);
+                message.channel.send(totalString).catch(console.log("sa crujio aw shid"));
             }
 
         } else {
 
             if (robaladaList.length == 0) {
 
-                message.channel.send("Robalada list currently empty.");
+                message.channel.send("Robalada list currently empty.").catch(console.log("sa crujio aw shid"));
 
             } else {
 
@@ -312,13 +312,13 @@ bot.on('message', async message => {
 
                     } else {
 
-                        message.channel.send(totalString);
+                        message.channel.send(totalString).catch(console.log("sa crujio aw shid"));
                         totalString = "```" + i + "-" + robaladaList[i][0] + "```";
 
                     }
                 }
 
-                message.channel.send(totalString);
+                message.channel.send(totalString).catch(console.log("sa crujio aw shid"));
             }
         }
     }
@@ -329,15 +329,15 @@ bot.on('message', async message => {
 
             if (parseInt(messageStringsLower[3], 10) < robaladaShinyList.length) {
 
-                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)][0]);
+                message.channel.send(robaladaShinyList[parseInt(messageStringsLower[3], 10)][0]).catch(console.log("sa crujio aw shid"));
 
                 if (robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] != "*" && robaladaShinyList[parseInt(messageStringsLower[3], 10)][1])
 
-                    message.channel.send("```" + "Lore: " + robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaShinyList[parseInt(messageStringsLower[3], 10)][1] + "```").catch(console.log("sa crujio aw shid"));
 
             } else {
 
-                message.channel.send("Aquesta robalesca encara no existeix (de moment)");
+                message.channel.send("Aquesta robalesca encara no existeix (de moment)").catch(console.log("sa crujio aw shid"));
 
             }
 
@@ -345,15 +345,15 @@ bot.on('message', async message => {
 
             if (parseInt(messageStringsLower[2], 10) < robaladaList.length) {
 
-                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)][0]);
+                message.channel.send(robaladaList[parseInt(messageStringsLower[2], 10)][0]).catch(console.log("sa crujio aw shid"));
 
                 if (robaladaList[parseInt(messageStringsLower[2], 10)][1] != "*" && robaladaList[parseInt(messageStringsLower[2], 10)][1])
 
-                    message.channel.send("```" + "Lore: " + robaladaList[parseInt(messageStringsLower[2], 10)][1] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaList[parseInt(messageStringsLower[2], 10)][1] + "```").catch(console.log("sa crujio aw shid"));
 
             } else {
 
-                message.channel.send("Aquesta robalesca encara no existeix (de moment)");
+                message.channel.send("Aquesta robalesca encara no existeix (de moment)").catch(console.log("sa crujio aw shid"));
 
             }
         }
@@ -367,17 +367,17 @@ bot.on('message', async message => {
 
             if (length > 0) {
 
-                message.channel.send("En total hay " + length + " robaladas shiny. La última (índice `" + (length - 1) + "`) es:");
-                message.channel.send(robaladaShinyList[length - 1][0]);
+                message.channel.send("En total hay " + length + " robaladas shiny. La última (índice `" + (length - 1) + "`) es:").catch(console.log("sa crujio aw shid"));
+                message.channel.send(robaladaShinyList[length - 1][0]).catch(console.log("sa crujio aw shid"));
 
                 if (robaladaShinyList[length - 1][1] != "*" && robaladaShinyList[length - 1][1]) {
 
-                    message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaShinyList[length - 1][1] + "```").catch(console.log("sa crujio aw shid"));
                 }
 
             } else {
 
-                message.channel.send("No ih ah robal escques");
+                message.channel.send("No ih ah robal escques").catch(console.log("sa crujio aw shid"));
             }
 
         } else {
@@ -387,17 +387,17 @@ bot.on('message', async message => {
 
             if (length > 0) {
 
-                message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:");
-                message.channel.send(robaladaList[length - 1][0]);
+                message.channel.send("En total hay " + length + " robaladas. La última (índice `" + (length - 1) + "`) es:").catch(console.log("sa crujio aw shid"));
+                message.channel.send(robaladaList[length - 1][0]).catch(console.log("sa crujio aw shid"));
 
                 if (robaladaList[length - 1][1] != "*" && robaladaList[length - 1][1]) {
 
-                    message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```");
+                    message.channel.send("```" + "Lore: " + robaladaList[length - 1][1] + "```").catch(console.log("sa crujio aw shid"));
                 }
 
             } else {
 
-                message.channel.send("No ih ah robal escques");
+                message.channel.send("No ih ah robal escques").catch(console.log("sa crujio aw shid"));
             }
         }
     }
@@ -452,10 +452,10 @@ bot.on('message', async message => {
                 robaladaBomb2 += robaladaAux + "\n";
         }
 
-        message.channel.send(robaladaBomb, { tts: randomTTs });
+        message.channel.send(robaladaBomb, { tts: randomTTs }).catch(console.log("sa crujio aw shid"));
 
         if (robaladaBomb2.length > 0)
-            message.channel.send(robaladaBomb2, { tts: randomTTs });
+            message.channel.send(robaladaBomb2, { tts: randomTTs }).catch(console.log("sa crujio aw shid"));
     }
 
     function restart(error) {
@@ -466,7 +466,7 @@ bot.on('message', async message => {
             bot.users.get(process.env.AUTHOR_ID).send(error);
         }
 
-        message.channel.send("A wueno adios master 😩");
+        message.channel.send("A wueno adios master 😩").catch(console.log("sa crujio aw shid"));
         bot.destroy();
         bot.login(process.env.BOT_TOKEN);
 
@@ -507,7 +507,7 @@ bot.on('message', async message => {
             case 8: case 9: case 10: case 11: case 12: case 13: case 14: case 15: case 16: case 17:
             case 18: message.reply(dubs + "... go buy some lotto");
                 break;
-            default: message.channel.send(dubs);
+            default: message.channel.send(dubs).catch(console.log("sa crujio aw shid"));
                 break;
         }
 
